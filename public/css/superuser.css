@@ -1,0 +1,37 @@
+
+/*SUPERUSER*/
+.container{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  top: 150px;
+}
+.list{
+  display: flex;
+  flex-wrap: wrap;
+  width:500px;
+  justify-content: center;
+  padding: 10px;
+  list-style-type: none;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 3px 1px 0 rgba(0, 0, 0, 0.24);
+}
+.element{
+  display: inline-block;
+  width: 180px;
+  height: 180px;
+  margin: 20px;
+  text-align: center;
+}
+
+.element img{
+  width: 180px;
+  height: 180px;
+}
+
+.element a:hover img,.element img:hover {
+  width: 210px;
+  height: 210px;
+  margin-left: -15px;
+  margin-top: -15px;
+}

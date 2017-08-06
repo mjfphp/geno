@@ -1,0 +1,39 @@
+.container{
+    position: relative;
+    top: 110px;
+    margin: 0px;
+    width: 100%;
+}
+.list{
+  display: flex;
+  flex-wrap: wrap;
+  width:500px;
+  justify-content: center;
+  padding: 10px;
+  list-style-type: none;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 3px 1px 0 rgba(0, 0, 0, 0.24);
+}
+.element{
+  display: inline-block;
+  width: 180px;
+  height: 180px;
+  margin: 20px;
+  text-align: center;
+}
+
+.element img{
+  width: 180px;
+  height: 180px;
+}
+.element a:hover img,.element img:hover {
+  width: 200px;
+  height: 200px;
+  margin-left: -13px;
+  margin-top: -13px;
+}
+.panel-heading{
+    padding: 0px;
+}
+.panel-body button{
+    margin-bottom: 5px;
+}

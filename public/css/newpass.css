@@ -1,0 +1,60 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin|Karla|Lato|Rubik');
+html,body{
+  overflow: hidden;
+  width: 100%;
+  height: 100%;
+}
+.container{
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  margin-top: 70px;
+}
+.wrap{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  padding: 30px;
+  height: 250px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.24);
+}
+
+.form input, .form button{
+  margin: 20px;
+  padding: 9px;
+  font-size: 18px;
+  font-family: "Lato",sans-serif;
+}
+input {
+  min-width:230px!important;
+  max-width:99.99%!important;
+  transition: width 0.25s;
+  text-align:center;
+}
+
+button {
+  background-color: #337ab7;
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  border: 0;
+  padding: 16px;
+  color: #FFFFFF;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.24);
+  opacity: 1;
+  z-index: 1;
+}
+button:hover,button:focus,button:visited{
+  color: white !important;
+}

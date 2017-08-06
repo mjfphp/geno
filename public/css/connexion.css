@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300');
+html{
+  overflow: hidden;
+}
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-page {
+  width: 360px;
+  height: 360px;
+  position: relative;
+  top: 50px;
+  padding: 8% 0 0;
+  margin: auto;
+}
+.form {
+  position: relative;
+  z-index: 1;
+  background: #FFFFFF;
+  max-width: 360px;
+  margin: 0 auto 100px;
+  padding: 45px;
+  text-align: center;
+  box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+}
+.form .dd {
+  font-family: "Roboto", sans-serif;
+  outline: 0;
+  background: #f2f2f2;
+  width: 100%;
+  border: 0;
+  margin: 0 0 15px;
+  padding: 15px;
+  box-sizing: border-box;
+  font-size: 14px;
+  text-align: center;
+}
+.form .dd:focus{
+  background: #f2e4e4;
+}
+.form button {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: #337ab7;
+  width: 100%;
+  border: 0;
+  margin-top: 14px;
+  padding: 16px;
+  color: #FFFFFF;
+  font-size: 14px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+.form button:hover,.form button:active,.form button:focus {
+  background: rgba(0, 48, 255, 0.93);
+}
+.form .message a {
+  color: #00796B;
+  text-decoration: underline;
+  float: right;
+}
+.form .message {
+  margin: 15px 0 0;
+}
+.form .register-form {
+  display: none;#1a46b6
+}
+.profile-img-card {
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.hold{
+  display: flex;
+}
+.hold input{
+  order: 2;
+  flex-grow: 1;
+  margin-left: 70px;
+}
+.hold label{
+  margin-left: 30px;
+  font-family: "Roboto", sans-serif;
+  font-weight: 500;
+}

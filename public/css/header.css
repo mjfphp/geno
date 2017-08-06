@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css?family=Fresca');
+
+*{
+  margin: 0 auto;
+  padding: 0 auto;
+}
+body{
+  min-width: 600px;
+
+}
+.header {
+  display: inline-block;
+  background-color: #0088ae;
+  color: white;
+  position: fixed;
+  font-family: 'Fresca', sans-serif;
+  width: 100%;
+  min-width: 500px;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  z-index: 2 !important;
+}
+.header h1 {
+  text-align: center;
+}
+.header img {
+  width: 70px;
+  height: 70px;
+  position: absolute;
+  top: 25px;
+  margin-left: 160px;
+  border-radius: 100%;
+  background-color: white;
+  box-shadow: 0 0 7px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  transition: margin-left 1s;
+}
+.header img:focus,.header img:hover,.header img:visited{
+  width: 90px;
+  height: 90px;
+  top: 10px;
+  left: -10px;
+  background-size: cover;
+}
+
+@media (max-width: 750px){
+  .header img {
+    margin-left: 30px;
+  }
+}
+.logoutCnt{
+  float: right;
+  position:absolute;
+  bottom: 17px;
+  right: 20px;
+}
+
+ .logout{
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  background: white;
+  border: 0;
+  padding: 10px;
+  color: #337ab7;
+  font-size: 12px;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+}
+
+.alert{
+  margin: 0;
+  padding: 5px;
+  position: relative;
+  top: 20px;
+}
