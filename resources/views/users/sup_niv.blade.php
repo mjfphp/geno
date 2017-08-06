@@ -55,10 +55,11 @@
                                 <label for="abbreviation">Abréviation</label>
                                 <input id="abbreviation" type="text" name="abbreviation" placeholder="intitule">
 
-                                <label for="nbg">Nombre de Groupes</label>
-                                <input id=nbg" type="number" name=nbg" step="1" min="1" placeholder="Nombre de Groupes">
+                                <label for="nbg">Nombre de Groupe</label>
+                                <input id="nbg" type="number" name="nbg" placeholder="Nombre de Groupe" min="00">
 
-                                <input id="filiere_id" type="hidden" name="filiere_id" value="{{$filiere->id}}">
+                                <!-- Hna dir code php li kayjib id o i7ato f blasst id -->
+                                <input id="filiere_id" class="hidden" name="filiere_id" value="{{$filiere->id}}">
 
                                 <div class="inline">
                                   <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
@@ -89,7 +90,10 @@
                                     <td>{{$item->id}}</td>
                                     <td>{{$item->abbreviation}}</td>
                                     <td>{{$item->nbg}}</td>
-                                    <td>{{ $filiere->abbreviation }}</td>
+                                    <td>
+                                        {{ $filiere->abbreviation }}
+
+                                    </td>
                                     <td>
                                       <button class="edit-modal edit btn">
                                           <span class="glyphicon glyphicon-edit"></span> Edit
@@ -113,7 +117,7 @@
                                 <h4>Confirmation</h4>
                            </div>
                          <div class="modal-body">
-                           {{Form::open(['class' => 'pure-form pure-form-stacked','action' => 'AniveauxC@store', 'method' => 'post']) }}
+                           <form class="pure-form pure-form-stacked" method="post">
 
                              {{ csrf_field()}}
                              <input type="hidden" name="_method" value="put">
@@ -121,22 +125,22 @@
                              <label for="abbreviation">Abréviation</label>
                              <input id="abbreviation" type="text" name="abbreviation" placeholder="intitule">
 
-                             <label for="nbg">Nombre de Groupes</label>
-                             <input id=nbg" type="number" name=nbg" step="1" min="1" placeholder="Nombre de Groupes">
+                             <label for="nbg">Nombre de Groupe</label>
+                             <input id="nbg" type="number" name="nbg" placeholder="Nombre de Groupe" min="00">
 
                              <!-- Hna dir code php li kayjib id o i7ato f blasst id -->
-                             <input id="filiere_id" name="filiere_id" value="{{$filiere->id}}" type="hidden">
+                             <input id="filiere_id" name="filiere_id" value="{{$filiere->id}}" class="hidden">
 
                          <div class="inline">
                            <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
                            <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
                          </div>
-                       {{Form::close()}}
+                       </form>
                            </div>
                            </div>
 
                     </div>
-                    <div id="deleteNiv" class="modal">
+                    <div id="deleteN" class="modal">
                           <div class="modal-content">
                              <div class="modal-header">
                                <div id="nav-icon1" class="open">
@@ -146,7 +150,7 @@
                                   <h4>Confirmation</h4>
                              </div>
                            <div class="modal-body">
-                             {{Form::open(['class' => 'pure-form pure-form-stacked','action' => 'AniveauxC@store', 'method' => 'post']) }}
+                             <form class="pure-form pure-form-stacked" method="post">
                                {{ csrf_field()}}
                                <input name="_method" type="hidden" value="DELETE">
                                <h4>Vous Voulez vraiment supprimer ce Niveau ?</h4>
@@ -154,7 +158,7 @@
                              <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
                              <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
                            </div>
-                         {{Form::close()}}
+                         </form>
                              </div>
                              </div>
 

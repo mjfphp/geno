@@ -153,7 +153,7 @@
                                 @endforeach
                              </select>
 
-                               <input id="niveau_id" type="hidden" value="{{$niveau->id}}" name="niveau_id">
+                             {{ Form::text('niveau_id',$niveau->id, array('id' => ('niveau_id') ) ) }}
 
                              <label for="departement_id">Département</label>
                              <select id="departement_id" name="departement_id">

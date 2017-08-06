@@ -24,13 +24,7 @@ $(document).ready(function(){
           var el = $(this).parent().prevAll();
           $('#editMat form').attr('action','/matieres/' + el[6].innerText);
           $('#editMat #intitule').val(el[5].innerText);
-          $('#editMat #grp').find("option").each(function(){
-            if($(this).text() === el[4].innerText){
-              $(this).attr('selected','selected');
-            }else{
-              $(this).removeAttr('selected');
-            }
-          });
+          $('#editMat #grp').val(el[4].innerText);
           $('#editMat #user_id').find("option").each(function(){
             if($(this).text() === el[3].innerText){
               $(this).attr('selected','selected');
@@ -38,6 +32,7 @@ $(document).ready(function(){
               $(this).removeAttr('selected');
             }
           });
+          $('#editMat #module_id').val(el[2].innerText);
           $('#editMat #pourcentage').val(el[1].innerText);
           $('#editMat #vh').val(el[0].innerText);
   });
@@ -45,6 +40,7 @@ $(document).ready(function(){
           $('#deleteMat').css("display","block");
           var el = $(this).parent().prevAll();
           $('#deleteMat form').attr('action','/matieres/' + el[6].innerText);
+
   });
 
 });

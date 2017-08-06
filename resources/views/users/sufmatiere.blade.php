@@ -27,12 +27,8 @@
                                 <label for="intitule">Intitule</label>
                                 <input id="intitulef" type="text" name="intitule" value="{{ old('intitule') }}" placeholder="intitule">
 
-                                <label for="grp">Groupe</label>
-                                <select id="grp" name="grp">
-                                  @foreach ($grps as $grp)
-                                     <option value="{{$grp->id}}">{{$grp->id}}</option>
-                                  @endforeach
-                                </select>
+                                <label for="grp">Nombre de Groupes</label>
+                                <input id="grp" type="number" name="grp" min="1" step="1" value="{{ old('grp') }}" placeholder="Nombre de Groupes">
 
                                 <label for="user_id">Responsable</label>
                                 <select id="user_id" name="user_id">
@@ -124,12 +120,8 @@
                  <label for="intitule">Intitule</label>
                  <input id="intitule" type="text" name="intitule" placeholder="Intitule">
 
-                 <label for="grp">Groupe</label>
-                 <select id="grp" name="grp">
-                   @foreach ($grps as $grp)
-                      <option value="{{$grp->id}}">{{$grp->id}}</option>
-                   @endforeach
-                 </select>
+                 <label for="grp">Nombre de Groupes</label>
+                 <input id="grp" type="number" name="grp" min="1" step="1" placeholder="Nombre de Groupes">
 
                  <label for="user_id">Prof</label>
                  <select id="user_id" name="user_id">
@@ -137,6 +129,7 @@
                       <option value="{{$prof->id}}">{{$prof->name." ".$prof->prenom}}</option>
                    @endforeach
                  </select>
+
 
                  <input id="module_id" type="hidden" name="module_id" value="{{$module->id}}">
 

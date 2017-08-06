@@ -19,15 +19,16 @@ $(document).ready(function(){
   $('.edit-modal').on('click',function() {
           $('#editNiv').css("display","block");
           var el = $(this).parent().prevAll();
+
           $('#editNiv form').attr('action','/niveaux/' + el[3].innerText);
           $('#editNiv #abbreviation').val(el[2].innerText);
           $('#editNiv #nbg').val(el[1].innerText);
+
   });
   $(".delete-modal").on('click',function() {
-          $('#deleteNiv').css("display","block");
+          $('#deleteN').css("display","block");
           var el = $(this).parent().prevAll();
-          $('#deleteNiv form').attr('action','/niveaux/' + el[3].innerText);
-
+          $('#deleteN form').attr('action','/niveaux/' + el[3].innerText);
   });
   $('.modal .annuler,.modal #nav-icon1,.modal span').click(function(){
           $('.modal').css("display","none");
