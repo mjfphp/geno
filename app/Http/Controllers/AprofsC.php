@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\User;
 use App\Departement;
 use Validator;
+use \Storage;
 use Maatwebsite\Excel\Writers\CellWriter;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
