@@ -13,7 +13,7 @@
         <div class="searchBar">
           {{Form::open(['class' => 'form-inline','action' => 'Adminlog@home', 'method' => 'post']) }}
 
-            <div class="form-group">
+            <div class="form-group  @if($errors->has('search')) has-error @endif" >
               <input type="search" class="form-control" name="search" placeholder="Search">
             </div>
             <div class="form-group">
@@ -28,13 +28,17 @@
             <div class="form-group">
               <button type="submit" name="button" class="btn btn-primary ">Search</button>
             </div>
+            @if($errors->has('search'))
+                    <div class="error" style="color:red">{{ $errors->first('search') }}</div>
+            @endif
+             @if(session('rep'))
+                                   <div class="alert alert-danger" role="alert">
+                                        <strong>{{session('rep')}}</strong>
+                                  </div>
+                      @endif
           {{ Form::close() }}
         </div>
-         @if(session('rep'))
-                       <div class="alert alert-warning" role="alert">
-                            <strong>{{session('rep')}}</strong>
-                      </div>
-          @endif
+
         <div class="l">
           <ul class="list">
             <li class="element">
