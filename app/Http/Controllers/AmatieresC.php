@@ -31,7 +31,7 @@ class AmatieresC extends Controller
 
 
         if ($validator->fails()) {
-            return redirect('/modules/'.$mid)
+            return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -45,7 +45,7 @@ class AmatieresC extends Controller
         $matiere->module_id=$mid;
 
         $matiere->save();
-        return redirect('/modules/'.$mid);
+        return redirect()->back();
     }
 
 
@@ -65,7 +65,7 @@ class AmatieresC extends Controller
 
 
         if ($validator->fails()) {
-            return redirect('/modules/'.$mid)
+            return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }
@@ -75,13 +75,14 @@ class AmatieresC extends Controller
             $matiere->intitule=$request->input('intitule');
             $matiere->pourcentage=$request->input('pourcentage');
             $matiere->user_id=$request->input('user_id');
+            $matiere->grp=$request->input('grp');
             $matiere->vh=$request->input('vh');
             $matiere->module_id=$mid;
 
             $matiere->save();
         }
 
-        return redirect('/modules/'.$mid);
+        return redirect()->back();
     }
 
 

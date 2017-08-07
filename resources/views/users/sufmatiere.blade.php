@@ -27,9 +27,12 @@
                                 <label for="intitule">Intitule</label>
                                 <input id="intitulef" type="text" name="intitule" value="{{ old('intitule') }}" placeholder="intitule">
 
-                                <label for="grp">Nombre de Groupes</label>
-                                <input id="grp" type="number" name="grp" min="1" step="1" value="{{ old('grp') }}" placeholder="Nombre de Groupes">
-
+                                <label for="grp">Groupe</label>
+                                <select id="grp" name="grp" value="{{ old('grp') }}">
+                                           @for($i=1;$i<$module->niveau->nbg+1;$i++)
+                                                  <option value="{{$i}}">{{$i}}</option>
+                                           @endfor
+                                 </select>
                                 <label for="user_id">Responsable</label>
                                 <select id="user_id" name="user_id">
                                   @if($profs)
@@ -64,7 +67,7 @@
                         <tr>
                             <th class="hidden text-center">Id</th>
                             <th class="text-center">Intitule</th>
-                            <th class="text-center">Nombre de groupes</th>
+                            <th class="text-center">groupe</th>
                             <th class="text-center">Prof</th>
                             <th class="text-center">Module</th>
                             <th class="text-center">Pourcentage</th>
@@ -120,9 +123,12 @@
                  <label for="intitule">Intitule</label>
                  <input id="intitule" type="text" name="intitule" placeholder="Intitule">
 
-                 <label for="grp">Nombre de Groupes</label>
-                 <input id="grp" type="number" name="grp" min="1" step="1" placeholder="Nombre de Groupes">
-
+                 <label for="grp">Groupe</label>
+                   <select id="grp" name="grp" value="{{ old('grp') }}" type="number">
+                      @for($i=1;$i<$module->niveau->nbg+1;$i++)
+                               <option value="{{$i}}">{{$i}}</option>
+                      @endfor
+                  </select>
                  <label for="user_id">Prof</label>
                  <select id="user_id" name="user_id">
                    @foreach ($profs as $prof)

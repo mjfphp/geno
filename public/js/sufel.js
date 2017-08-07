@@ -18,7 +18,7 @@ $(document).ready(function(){
   $('.edit-modal').on('click',function() {
           $('#editEl').css("display","block");
           var el = $(this).parent().prevAll();
-          $('#editEl form').attr('action','/profs/' + el[13].innerText);
+          $('#editEl form').attr('action','/eleves/' + el[13].innerText);
           $('#editEl #apoge').val(el[12].innerText);
           $('#editEl #cne').val(el[11].innerText);
           $('#editEl #cin').val(el[10].innerText);
@@ -41,7 +41,7 @@ $(document).ready(function(){
   $(".delete-modal").on('click',function() {
           $('#deleteEl').css("display","block");
           var el = $(this).parent().prevAll();
-          $('#deleteEl form').attr('action','/profs/' + el[13].innerText);
+          $('#deleteEl form').attr('action','/eleves/' + el[13].innerText);
   });
   $('.modal .annuler,.modal #nav-icon1,.modal span').click(function(){
           $(".modal").each(function(){

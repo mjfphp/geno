@@ -1,11 +1,20 @@
 @extends('layouts.tab')
 
+  @if ($errors->any())
+                  <div class="alert alert-danger">
+                      <ul>
+                          @foreach ($errors->all() as $error)
+                              <li>{{ $error }}</li>
+                          @endforeach
+                      </ul>
+                  </div>
+              @endif
 @section('header')
-  Gestion des Eleves
+  Gestion des Eleves du Niveau {{ $niveau->abbreviation }}
 @endsection
 
 @section('js-child')
-  <script src="js/sufel.js"></script>
+  <script  src="{{ URL::asset('js/sufel.js') }}"></script>
 @endsection
 
           @section('buttons1')
@@ -20,18 +29,18 @@
                           <h4>Confirmation</h4>
                      </div>
                      <div class="modal-body">
-                       <form class="pure-form pure-form-stacked" method="post">
 
+         {{Form::open(['class' => 'pure-form pure-form-stacked','action' => 'AelevesC@store', 'method' => 'post']) }}
                                 {{csrf_field()}}
 
                                 <label for="apoge">Apogé</label>
-                                <input id="apoge" type="text" name="apoge" placeholder="Apogé">
+                                <input id="apoge" type="text" name="apoge" placeholder="Apogé" value="{{ old('apoge') }}">
 
                                 <label for="cin">CNE</label>
-                                <input id="cin" type="text" name="cne" placeholder="CNE">
+                                <input id="cin" type="text" name="cne" placeholder="CNE" value="{{ old('cin') }}">
 
                                 <label for="cin">CIN</label>
-                                <input id="cin" type="text" name="cin" placeholder="CIN">
+                                <input id="cin" type="text" name="cin" placeholder="CIN" value="{{ old('cne') }}">
 
                                 <label for="nom">Nom</label>
                                <input id="nom" name="nom" type="text" placeholder="Nom" value="{{ old('nom') }}">
@@ -39,16 +48,18 @@
                                 <label for="prenom">Prenom</label>
                                 <input id="prenom" type="text" name="prenom" placeholder="Prenom" value="{{ old('prenom') }}">
 
-                                <label for="statut">Statue</label>
-                                <select id="statut" name="statut">
-                                  @foreach ($stats as $stat)
-                                     <option value="{{$stat->id}}">{{$stat->intitule}}</option>
-                                  @endforeach
+                                <label for="statut">Statut</label>
+                                <select id="statut" name="statut" value="{{ old('statut') }}">
+                                     <option value="Aj">Aj</option>
+                                     <option value="Tr">Tr</option>
+                                     <option value="Bd">Bd</option>
                                 </select>
 
                                 <label for="grp">Groupe</label>
-                                <input id="grp" type="number" name="grp" min="1" step="1" placeholder="Groupe" value="{{ old('grp') }}">
-
+                                <select id="grp" name="grp" value="{{ old('grp') }}">
+                                @for($i=1;$i<$niveau->nbg+1;$i++)
+                                       <option value="{{$i}}">{{$i}}</option>
+                                @endfor
                                 <label for="email">Email</label>
                                 <input id="email" type="text" name="email" placeholder="Email" value="{{ old('email') }}">
 
@@ -61,13 +72,16 @@
                                 <label for="ville">Ville</label>
                                 <input id="ville" type="text" name="ville" placeholder="Ville" value="{{ old('ville') }}">
 
+                                <input id="niveau_id" type="hidden" value="{{$niveau->id}}" name="niveau_id">
+
+
                                 <label for="num">Tél</label>
                                 <input id="num" type="number" name="num" placeholder="Tél" value="{{ old('num') }}">
                                 <div class="inline">
                                   <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
                                   <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
                                 </div>
-                          </form>
+                          {{ Form::close() }}
                        </div>
                       </div>
                   </div>
@@ -95,7 +109,8 @@
                                 </tr>
                             </thead>
                             <tbody>
-                            @foreach($eleve as $item)
+                            @if($niveau->eleves)
+                            @foreach($niveau->eleves as $item)
                                 <tr class="item{{$item->id}}">
                                     <td class="hidden">{{$item->id}}</td>
                                     <td>{{$item->apoge}}</td>
@@ -121,6 +136,7 @@
                                     </td>
                                 </tr>
                             @endforeach
+                            @endif
                             </tbody>
                          </table>
                   <div id="editEl" class="modal">
@@ -142,8 +158,8 @@
                              <label for="apoge">Apogé</label>
                              <input id="apoge" type="text" name="apoge" placeholder="Apogé">
 
-                             <label for="CNE">CNE</label>
-                             <input id="CNE" type="text" name="cne" placeholder="CNE">
+                             <label for="cne">CNE</label>
+                             <input id="cne" type="text" name="cne" placeholder="CNE">
 
                              <label for="cin">CIN</label>
                              <input id="cin" type="text" name="cin" placeholder="CIN">
@@ -155,16 +171,19 @@
                              <input id="prenom" type="text" name="prenom" placeholder="Prenom" >
 
                              <label for="statut">Statue</label>
-                             <select id="statut" name="statut">
-                               @foreach ($stats as $stat)
-                                  <option value="{{$stat->id}}">{{$stat->intitule}}</option>
-                               @endforeach
-                             </select>
+                              <select id="statut" name="statut" value="{{ old('statut') }}">
+                                    <option value="Aj">Aj</option>
+                                    <option value="Tr">Tr</option>
+                                   <option value="Bd">Bd</option>
+                              </select>
 
                              <label for="grp">Groupe</label>
-                             <input id="grp" type="number" name="grp" min="1" step="1" placeholder="Groupe" value="{{ old('grp') }}">
+                             <select id="grp" name="grp" value="{{ old('grp') }}">
+                                      @for($i=1;$i<$niveau->nbg+1;$i++)
+                                               <option value="{{$i}}">{{$i}}</option>
+                                      @endfor
 
-                             <label for="email">Email</label>
+                            <label for="email">Email</label>
                              <input id="email" type="text" name="email" placeholder="Email" >
 
                              <label for="date_naissance">Date De Naissance</label>
