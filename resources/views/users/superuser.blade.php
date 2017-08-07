@@ -11,25 +11,30 @@
 @section('content')
     <div class="cont">
         <div class="searchBar">
-          <form class="form-inline"  action="/s" method="post">
+          {{Form::open(['class' => 'form-inline','action' => 'Adminlog@home', 'method' => 'post']) }}
+
             <div class="form-group">
               <input type="search" class="form-control" name="search" placeholder="Search">
             </div>
             <div class="form-group">
               <select class="form-control" name="filter">
-                  <option value="0" selected>Filiere</option>
-                  <option value="1">Niveau</option>
-                  <option value="2">Prof</option>
-                  <option value="3">Eleve</option>
-                  <option value="4">Module</option>
-                  <option value="5">Matiere</option>
+                  <option value="0" selected>Filiere-Niveaux</option>
+                  <option value="1">Niveau-Modules</option>
+                  <option value="2">Niveau-eleves</option>
+                  <option value="3">Modules-Matieres</option>
+                  <option value="4">Prof</option>
               </select>
             </div>
             <div class="form-group">
               <button type="submit" name="button" class="btn btn-primary ">Search<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
             </div>
-          </form>
+          {{ Form::close() }}
         </div>
+         @if(session('rep'))
+                       <div class="alert alert-warning" role="alert">
+                            <strong>{{session('rep')}}</strong>
+                      </div>
+          @endif
         <div class="l">
           <ul class="list">
             <li class="element">
