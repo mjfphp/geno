@@ -28,6 +28,9 @@ Route::group(['middleware' => 'AdminSession'], function () {
 
     Route::get('/s','Adminlog@home');
     Route::resource('/profs','AprofsC');
+    Route::post('/profs/up','AprofsC@upload');
+    Route::post("/profs/doE","AprofsC@download");
+    Route::post("/profs/doP","AprofsC@downloadPdf");
     Route::resource('/filieres','AfilieresC');
     Route::resource('/dept',"test");
     Route::resource('/niveaux',"AniveauxC");
