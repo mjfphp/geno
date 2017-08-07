@@ -26,7 +26,7 @@
               </select>
             </div>
             <div class="form-group">
-              <button type="submit" name="button" class="btn btn-primary ">Search<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+              <button type="submit" name="button" class="btn btn-primary ">Search</button>
             </div>
           {{ Form::close() }}
         </div>

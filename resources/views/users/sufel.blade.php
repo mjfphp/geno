@@ -101,12 +101,13 @@
                                     <th class="text-center">CIN</th>
                                     <th class="text-center">Nom</th>
                                     <th class="text-center">Prénom</th>
+                                    <th class="text-center">statut</th>
                                     <th class="text-center">Email</th>
+                                    <th class="text-center">Group</th>
                                     <th class="text-center">Date</th>
                                     <th class="text-center">Lieu </th>
                                     <th class="text-center">Ville</th>
                                     <th class="text-center">Tél</th>
-                                    <th class="text-center">statue</th>
                                     <th class="text-center">Choix</th>
                                 </tr>
                             </thead>
@@ -121,13 +122,12 @@
                                     <td>{{$item->nom}}</td>
                                     <td>{{$item->prenom}}</td>
                                     <td>{{$item->statut}}</td>
-                                    <td>{{$item->grp}}</td>
                                     <td>{{$item->email}}</td>
+                                    <td>{{$item->grp}}</td>
                                     <td>{{$item->date_naissance}}</td>
                                     <td>{{$item->lieu_naissance}}</td>
                                     <td>{{$item->ville}}</td>
                                     <td>{{$item->num}}</td>
-                                    <td></td>
                                     <td>
                                       <button class="edit-modal btn">
                                           <span class="glyphicon glyphicon-edit"></span> Edit
