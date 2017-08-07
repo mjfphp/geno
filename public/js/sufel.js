@@ -31,7 +31,13 @@ $(document).ready(function(){
               $(this).removeAttr('selected');
             }
           });
-          $('#editEl #grp').val(el[6].innerText);
+          $('#editEl #grp').find("option").each(function(){
+            if($(this).text() === el[6].innerText){
+              $(this).attr('selected','selected');
+            }else{
+              $(this).removeAttr('selected');
+            }
+          });
           $('#editEl #email').val(el[5].innerText);
           $('#editEl #date_naissance').val(el[4].innerText.replace(/\//g ,"-").split("-").reverse().join("-"));
           $('#editEl #lieu_naissance').val(el[3].innerText);

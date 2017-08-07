@@ -60,6 +60,8 @@
                                 @for($i=1;$i<$niveau->nbg+1;$i++)
                                        <option value="{{$i}}">{{$i}}</option>
                                 @endfor
+                               </select>
+
                                 <label for="email">Email</label>
                                 <input id="email" type="text" name="email" placeholder="Email" value="{{ old('email') }}">
 
@@ -182,8 +184,8 @@
                                       @for($i=1;$i<$niveau->nbg+1;$i++)
                                                <option value="{{$i}}">{{$i}}</option>
                                       @endfor
-
-                            <label for="email">Email</label>
+                             </select>
+                             <label for="email">Email</label>
                              <input id="email" type="text" name="email" placeholder="Email" >
 
                              <label for="date_naissance">Date De Naissance</label>
