@@ -39,6 +39,16 @@
                                 <label for="prenom">Prenom</label>
                                 <input id="prenom" type="text" name="prenom" placeholder="Prenom" value="{{ old('prenom') }}">
 
+                                <label for="statut">Statue</label>
+                                <select id="statut" name="statut">
+                                  @foreach ($stats as $stat)
+                                     <option value="{{$stat->id}}">{{$stat->intitule}}</option>
+                                  @endforeach
+                                </select>
+
+                                <label for="grp">Groupe</label>
+                                <input id="grp" type="number" name="grp" min="1" step="1" placeholder="Groupe" value="{{ old('grp') }}">
+
                                 <label for="email">Email</label>
                                 <input id="email" type="text" name="email" placeholder="Email" value="{{ old('email') }}">
 
@@ -93,6 +103,8 @@
                                     <td>{{$item->cin}}</td>
                                     <td>{{$item->nom}}</td>
                                     <td>{{$item->prenom}}</td>
+                                    <td>{{$item->statut}}</td>
+                                    <td>{{$item->grp}}</td>
                                     <td>{{$item->email}}</td>
                                     <td>{{$item->date_naissance}}</td>
                                     <td>{{$item->lieu_naissance}}</td>
@@ -141,6 +153,16 @@
 
                              <label for="prenom">Prenom</label>
                              <input id="prenom" type="text" name="prenom" placeholder="Prenom" >
+
+                             <label for="statut">Statue</label>
+                             <select id="statut" name="statut">
+                               @foreach ($stats as $stat)
+                                  <option value="{{$stat->id}}">{{$stat->intitule}}</option>
+                               @endforeach
+                             </select>
+
+                             <label for="grp">Groupe</label>
+                             <input id="grp" type="number" name="grp" min="1" step="1" placeholder="Groupe" value="{{ old('grp') }}">
 
                              <label for="email">Email</label>
                              <input id="email" type="text" name="email" placeholder="Email" >

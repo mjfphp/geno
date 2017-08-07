@@ -140,7 +140,7 @@
                            </div>
 
                     </div>
-                    <div id="deleteN" class="modal">
+                    <div id="deleteNiv" class="modal">
                           <div class="modal-content">
                              <div class="modal-header">
                                <div id="nav-icon1" class="open">
