@@ -33,6 +33,7 @@
                                                   <option value="{{$i}}">{{$i}}</option>
                                            @endfor
                                  </select>
+
                                 <label for="user_id">Responsable</label>
                                 <select id="user_id" name="user_id">
                                   @if($profs)
@@ -41,6 +42,7 @@
                                   @endforeach
                                   @endif
                                 </select>
+                                
                                 <input id="module_id" type="hidden" name="module_id" value="{{$module->id}}">
 
                                 <label for="pourcentage">pourcentage</label>
