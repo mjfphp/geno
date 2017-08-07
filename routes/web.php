@@ -33,6 +33,7 @@ Route::group(['middleware' => 'AdminSession'], function () {
     Route::resource('/niveaux',"AniveauxC");
     Route::resource('/modules',"AmodulesC");
     Route::resource('/matieres',"AmatieresC");
+    Route::resource('/eleves',"AelevesC");
 
 
 });
