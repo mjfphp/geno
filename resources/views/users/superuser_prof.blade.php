@@ -1,4 +1,4 @@
-@extends('layouts.app')
+    @extends('layouts.app')
 
 @section('style')
   <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
@@ -33,9 +33,10 @@
               @endif
 
         <div class="buttons1">
-          <button class="btnstyle" type="button" id="addp" name="addp">Ajouter Un Prof</button>
-          <button class="btnstyle" type="button"  id ="imprt" name="imprt">Importer</button>
-          <button class="btnstyle" type="button"  id ="exprt" name="imprt">Exporter</button>
+          <button type="button" id="addp" name="addp" class="btnstyle">Ajouter Un Prof</button>
+          <button type="button" id ="import_btn" class="btnstyle"> Importer</button>
+          <button type="submit" id ="exprtE" name="exprtE" form="doE" class="btnstyle">Exporter Excel</button>
+          <button type="button" id ="exprtP" name="exprtP" form="doPdf" class="btnstyle">Exporter Pdf</button>
           <div id="prof" class="modal">
                 <div class="modal-content">
                    <div class="modal-header">
@@ -241,7 +242,91 @@
                      </div>
 
          </div>
+        <div id="import" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="nav-icon1" class="open">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <h4>Importer liste des profs</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="pure-form pure-form-stacked" method="post" id="up" enctype="multipart/form-data">
+                        {{csrf_field()}}
+                        <input id='fileid' type='file' name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onchange="resetUp()">
+                        <div id="up_result"></div>
+                        <div class="inline">
+                            <button type="button" class="pure-button pure-button-primary" onclick="up()">valider</button>
+                            <button type="button" class="cancel_upload pure-button pure-button-primary">Annuler</button>
+                        </div>
+                    </form>
+                    
 
+                </div>
+            </div>
+        </div>
+        
+        <div id="export_pdf" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="nav-icon1" class="open">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <h4>Les champs à exporter</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" method="post" id="up" enctype="multipart/form-data">
+                        {{csrf_field()}}
+                        <div class="checkbox">
+                            <label for="Ref" class="inline">
+                                <input id='Ref' type='checkbox' name="Ref" form="doP">Ref prof
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Grade" class="inline">
+                                <input id='Grade' type='checkbox' name="Grade" form="doP">Grade
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Spe" class="inline">
+                                <input id='Spe' type='checkbox' name="Spe" form="doP">Spécialité
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Addr" class="inline">
+                                <input id='Addr' type='checkbox' name="Addr" form="doP">Adresse
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Ville" class="inline">
+                                <input id='Ville' type='checkbox' name="Ville" form="doP">Ville
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Tel" class="inline">
+                                <input id='Tel' type='checkbox' name="Tel" form="doP">Téléphone
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Dep" class="inline">
+                                <input id='Dep' type='checkbox' name="Dep" form="doP">Département
+                            </label>
+                        </div>
+                        <div class="inline">
+                            <button type="submit" class="pure-button pure-button-primary" form="doP">valider</button>
+                            <button type="button" class="cancel_upload pure-button pure-button-primary">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     </div>
-
+    <form class="hidden" method="post" action="profs/doE" id="doE">
+        {{csrf_field()}}
+    </form>
+    <form class="hidden" method="post" action="profs/doP" id="doP">
+        {{csrf_field()}}
+    </form>
 @stop
