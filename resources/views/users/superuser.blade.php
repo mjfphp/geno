@@ -11,12 +11,12 @@
 @section('content')
     <div class="cont">
         <div class="searchBar">
-          <form class="form-inline"  action="" method="post">
+          <form class="form-inline"  action="/s" method="post">
             <div class="form-group">
               <input type="search" class="form-control" name="search" placeholder="Search">
             </div>
             <div class="form-group">
-              <select class="form-control">
+              <select class="form-control" name="filter">
                   <option value="0" selected>Filiere</option>
                   <option value="1">Niveau</option>
                   <option value="2">Prof</option>
@@ -26,7 +26,7 @@
               </select>
             </div>
             <div class="form-group">
-              <button type="submit" name="button" class="btn btn-primary"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span></button>
+              <button type="submit" name="button" class="btn btn-primary ">Search<span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
             </div>
           </form>
         </div>
