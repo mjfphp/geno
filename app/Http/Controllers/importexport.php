@@ -37,10 +37,10 @@ class importexport extends Controller
     {
         $val_rules=[
             'refprof'=>'required|max:255',
-            'nom' => 'required|max:255',
-            'prenom'=>'required|max:255',
-            'grade'=>'required|max:255',
-            'specialite'=>'required|max:255',
+            'nom' => 'required|max:255|alpha',
+            'prenom'=>'required|max:255|alpha',
+            'grade'=>'required|max:255|alpha',
+            'specialite'=>'required|max:255|alpha',
             'iddept'=>'required|max:255',
             'email' => 'required|unique:users|email',
             'adress'=>'max:255|nullable',
@@ -196,13 +196,13 @@ class importexport extends Controller
     {
         $profs=$this->Users();
         $depts = $this->Departements();
-        $prof_list=view("users.p_list")->with("cases",$request)
+        $prof_list=view("exports.export_pdf_sup")
+                    ->with("cases",$request)
                     ->with('profs',$profs)
                     ->with('depts',$depts)
                     ->render();
         return PDF::loadHtml($prof_list)
                     ->setPaper('A4','landscape')
-//                    ->filename("Profs")
                     ->download("Profs.pdf");
     }
 }

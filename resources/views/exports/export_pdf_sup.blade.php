@@ -1,40 +1,12 @@
 <html>
     <head>
         <title>Liste des profs</title>
-        <style>
-            body{
-              margin: 5px 0px 0px 5px;
-            }
-            .table{
-              box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
-              z-index: -1;
-              text-align: center;
-              width: 50%;
-              margin: 0px auto;
-              float: none;
-            }
-
-            .table thead td{
-              background-color: #337ab7;
-              padding: 10px;
-              color: white;
-              margin-left: 5px;
-              width: 100%;
-            }
-
-            tbody tr:nth-child(odd){
-              background-color: #f2e5e5;
-            }
-
-            .table tr{
-              font-family: "Rubik",sans-serif;
-            }
-        </style>
+        <link rel="stylesheet" href="css/export/pdf.css">
     </head>
 <body>
     <div class="tab">
      <table class="table" id="table">
-        <thead>
+        <thead class="active">
             <tr>
                 <th class="text-center">Nom</th>
                 <th class="text-center">Prenom</th>
@@ -101,7 +73,7 @@
                 @endif
 
                 @if($cases->Dep=="on")
-                <td>{{$item->departement_id}}</td>
+                <td>{{$item->departement["intitule"]}}</td>
                 @endif
             </tr>
         @endforeach
