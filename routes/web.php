@@ -27,6 +27,7 @@ Route::post('/','PublicC@index');
 Route::group(['middleware' => 'AdminSession'], function () {
 
     Route::get('/s','Adminlog@home');
+    Route::post('/s','Adminlog@search');
     Route::resource('/profs','AprofsC');
     Route::resource('/filieres','AfilieresC');
     Route::resource('/dept',"test");

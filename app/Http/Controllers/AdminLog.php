@@ -16,6 +16,20 @@ class AdminLog extends Controller
 
     public function home(Request $request)
     {
+        if($request->isMethod('post'))
+        {
+            $validator = Validator::make($request->all(), [
+                'search'=>'required',
+                'filter'=>'required'
+            ]);
+
+            if ($validator->fails()) {
+                return redirect()->back()
+                    ->withErrors($validator)
+                    ->withInput();
+            }
+
+        }
         return view("users.superuser");
     }
 }
