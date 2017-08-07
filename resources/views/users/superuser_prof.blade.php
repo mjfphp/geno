@@ -6,6 +6,8 @@
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   <link href="css/sup.css" rel="stylesheet" type="text/css">
   <link href="css/modal.css" rel="stylesheet" type="text/css">
+  <link href="css/export/export.css" rel="stylesheet" type="text/css">
+  <link href="css/export/export.css" rel="stylesheet" type="text/css">
 @endsection
 
 @section('header_title')
@@ -14,13 +16,11 @@
       <?php $i=0; ?>
 @section('js')
   <script src="js/sup.js"></script>
+  <script src="js/import_export/import.js"></script>
+  <script src="js/import_export/export.js"></script>
   <!-- Compiled and minified JavaScript -->
-
 @endsection
 @section('content')
-
-
-
     <div class="cont">
        @if ($errors->any())
                   <div class="alert alert-danger">
@@ -30,8 +30,7 @@
                           @endforeach
                       </ul>
                   </div>
-              @endif
-
+        @endif
         <div class="buttons1">
           <button type="button" id="addp" name="addp" class="btnstyle">Ajouter Un Prof</button>
           <button type="button" id ="import_btn" class="btnstyle"> Importer</button>
@@ -245,7 +244,7 @@
         <div id="import" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div id="nav-icon1" class="open">
+                    <div id="nav-icon1" class="open" onclick="cancel_import()">
                         <span></span>
                         <span></span>
                     </div>
@@ -258,7 +257,7 @@
                         <div id="up_result"></div>
                         <div class="inline">
                             <button type="button" class="pure-button pure-button-primary" onclick="up()">valider</button>
-                            <button type="button" class="cancel_upload pure-button pure-button-primary">Annuler</button>
+                            <button type="button" id="cancel_upload" class="cancel_upload pure-button pure-button-primary">Annuler</button>
                         </div>
                     </form>
                     
@@ -270,7 +269,7 @@
         <div id="export_pdf" class="modal">
             <div class="modal-content">
                 <div class="modal-header">
-                    <div id="nav-icon1" class="open">
+                    <div id="nav-icon1" class="open" onclick="cancel_export()">
                         <span></span>
                         <span></span>
                     </div>
@@ -316,7 +315,7 @@
                         </div>
                         <div class="inline">
                             <button type="submit" class="pure-button pure-button-primary" form="doP">valider</button>
-                            <button type="button" class="cancel_upload pure-button pure-button-primary">Annuler</button>
+                            <button type="button" id="cancel_export" class="pure-button pure-button-primary">Annuler</button>
                         </div>
                     </form>
                 </div>

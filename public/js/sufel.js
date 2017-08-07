@@ -18,36 +18,36 @@ $(document).ready(function(){
   $('.edit-modal').on('click',function() {
           $('#editEl').css("display","block");
           var el = $(this).parent().prevAll();
-          $('#editEl form').attr('action','/eleves/' + el[13].innerText);
-          $('#editEl #apoge').val(el[12].innerText);
-          $('#editEl #cne').val(el[11].innerText);
-          $('#editEl #cin').val(el[10].innerText);
-          $('#editEl #nom').val(el[9].innerText);
-          $('#editEl #prenom').val(el[8].innerText);
+          $('#editEl form').attr('action','/eleves/' + el[12].innerText);
+          $('#editEl #apoge').val(el[11].innerText);
+          $('#editEl #cne').val(el[10].innerText);
+          $('#editEl #cin').val(el[9].innerText);
+          $('#editEl #nom').val(el[8].innerText);
+          $('#editEl #prenom').val(el[7].innerText);
           $('#editEl #statut').find("option").each(function(){
-            if($(this).text() === el[7].innerText){
-              $(this).attr('selected','selected');
-            }else{
-              $(this).removeAttr('selected');
-            }
-          });
-          $('#editEl #grp').find("option").each(function(){
             if($(this).text() === el[6].innerText){
               $(this).attr('selected','selected');
             }else{
               $(this).removeAttr('selected');
             }
           });
-          $('#editEl #email').val(el[5].innerText);
-          $('#editEl #date_naissance').val(el[4].innerText.replace(/\//g ,"-").split("-").reverse().join("-"));
-          $('#editEl #lieu_naissance').val(el[3].innerText);
-          $('#editEl #ville').val(el[2].innerText);
-          $('#editEl #num').val(el[1].innerText);
+          $('#editEl #grp').find("option").each(function(){
+            if($(this).text() === el[5].innerText){
+              $(this).attr('selected','selected');
+            }else{
+              $(this).removeAttr('selected');
+            }
+          });
+          $('#editEl #email').val(el[4].innerText);
+          $('#editEl #date_naissance').val(el[3].innerText.replace(/\//g ,"-").split("-").reverse().join("-"));
+          $('#editEl #lieu_naissance').val(el[2].innerText);
+          $('#editEl #ville').val(el[1].innerText);
+          $('#editEl #num').val(el[0].innerText);
   });
   $(".delete-modal").on('click',function() {
           $('#deleteEl').css("display","block");
           var el = $(this).parent().prevAll();
-          $('#deleteEl form').attr('action','/eleves/' + el[13].innerText);
+          $('#deleteEl form').attr('action','/eleves/' + el[12].innerText);
   });
   $('.modal .annuler,.modal #nav-icon1,.modal span').click(function(){
           $(".modal").each(function(){
