@@ -28,11 +28,6 @@ class importexport extends Controller
         return $depts;
     }
 
-    /**
-     * @param Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
-     */
-
      public function upload(Request $request)
     {
         $val_rules=[
@@ -110,7 +105,6 @@ class importexport extends Controller
                         $prof->grade =$ligne["grade"];
                         $prof->prenom= $ligne["prenom"];
                         $prof->password=Hash::make('123456');
-//                        $prof->confirmation_token=Hash::make(str_random(8));
                         $prof->save();
                     }
                 }
