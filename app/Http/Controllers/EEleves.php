@@ -26,7 +26,6 @@ class EEleves extends Controller
     public function niveaux(){
         return Niveau::all();
     }
-
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector

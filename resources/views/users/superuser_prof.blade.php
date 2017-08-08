@@ -370,7 +370,7 @@
                         </div>
                         <div class="inline">
                             <button type="submit" class="pure-button pure-button-primary" form="doE">valider</button>
-                            <button type="button" id="cancel_export" class="pure-button pure-button-primary">Annuler</button>
+                            <button type="button" id="cancel_export_Excel" class="pure-button pure-button-primary">Annuler</button>
                         </div>
                     </form>
                 </div>

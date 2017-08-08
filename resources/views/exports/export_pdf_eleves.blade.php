@@ -5,6 +5,11 @@
     </head>
 <body>
 <div class="tab">
+    <div class="header">
+        <a href="#"><img src="images/ensa.png"></a>
+        <h1>Liste des eleves</h1>
+    </div>
+
     <table class="table" id="table">
         <thead>
             <tr>
