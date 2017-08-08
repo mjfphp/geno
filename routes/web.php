@@ -42,7 +42,6 @@ Route::group(['middleware' => 'AdminSession'], function () {
     Route::post('/eleves/doE',"EEleves@download");
     Route::post('/eleves/doP',"EEleves@downloadPdf");
 
-
 });
 
 ####################################################

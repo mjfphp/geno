@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html lang="fr">
 
   <head>
@@ -17,15 +16,13 @@
 
   <body>
     <div class="header">
-    <a href="{{Route('index')}}"><img src="{{ URL::asset('images/ensa.png') }}"></a>
-    <h1>@yield('header_title')</h1>
-    <div class="logoutCnt">
+        <a href="{{Route('index')}}"><img src="{{ URL::asset('images/ensa.png') }}"></a>
+        <h1>@yield('header_title')</h1>
+        <div class="logoutCnt">
      @if( Session::has('admin'))
      <a href="{{Route('Alogout')}}"> <button class="logout"  name="button">Logout</button> </a>
      @endif
-
-
-    </div>
+        </div>
     </div>
 
       @yield('content')
