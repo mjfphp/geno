@@ -34,7 +34,7 @@
         <div class="buttons1">
           <button type="button" id="addp" name="addp" class="btnstyle">Ajouter Un Prof</button>
           <button type="button" id ="import_btn" class="btnstyle"> Importer</button>
-          <button type="submit" id ="exprtE" name="exprtE" form="doE" class="btnstyle">Exporter Excel</button>
+          <button type="submit" id ="exprtE" name="exprtE" class="btnstyle">Exporter Excel</button>
           <button type="button" id ="exprtP" name="exprtP" form="doPdf" class="btnstyle">Exporter Pdf</button>
           <div id="prof" class="modal">
                 <div class="modal-content">
@@ -321,6 +321,62 @@
                 </div>
             </div>
         </div>
+        <div id="export_excel" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="nav-icon1" class="open" onclick="cancel_export()">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <h4>Les champs à exporter</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" method="post" id="do">
+                        {{csrf_field()}}
+                        <div class="checkbox">
+                            <label for="ERef" class="inline">
+                                <input id='ERef' type='checkbox' name="ERef" form="doE">Ref prof
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="EGrade" class="inline">
+                                <input id='EGrade' type='checkbox' name="EGrade" form="doE">Grade
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="ESpe" class="inline">
+                                <input id='ESpe' type='checkbox' name="ESpe" form="doE">Spécialité
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="EAddr" class="inline">
+                                <input id='EAddr' type='checkbox' name="EAddr" form="doE">Adresse
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="EVille" class="inline">
+                                <input id='EVille' type='checkbox' name="EVille" form="doE">Ville
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="ETel" class="inline">
+                                <input id='ETel' type='checkbox' name="ETel" form="doE">Téléphone
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="EDep" class="inline">
+                                <input id='EDep' type='checkbox' name="EDep" form="doE">Département
+                            </label>
+                        </div>
+                        <div class="inline">
+                            <button type="submit" class="pure-button pure-button-primary" form="doE">valider</button>
+                            <button type="button" id="cancel_export" class="pure-button pure-button-primary">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
     </div>
     <form class="hidden" method="post" action="profs/doE" id="doE">
         {{csrf_field()}}
