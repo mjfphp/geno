@@ -28,16 +28,19 @@ Route::group(['middleware' => 'AdminSession'], function () {
 
     Route::get('/s','Adminlog@home');
     Route::post('/s','Adminlog@home');
+
     Route::resource('/profs','AprofsC');
     Route::post('/profs/up','importexport@upload');
     Route::post("/profs/doE","importexport@download");
     Route::post("/profs/doP","importexport@downloadPdf");
+
     Route::resource('/filieres','AfilieresC');
     Route::resource('/dept',"test");
     Route::resource('/niveaux',"AniveauxC");
     Route::resource('/modules',"AmodulesC");
     Route::resource('/matieres',"AmatieresC");
     Route::resource('/eleves',"AelevesC");
+
     Route::post("/eleves/up","IEleves@upload");
     Route::post("/eleves/doE","EEleves@download");
     Route::post('/eleves/doP',"EEleves@downloadPdf");

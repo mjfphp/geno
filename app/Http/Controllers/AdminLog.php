@@ -41,28 +41,28 @@ class AdminLog extends Controller
                     if($filiere)
                         return redirect('filieres/'.$filiere->id);
                     else
-                        return redirect('/s')->with('rep','Cette filiere n existe pas !');
+                        return redirect('/s')->with('rep','Cette filiere n existe pas !')->withInput();
                     break;
                 case 1:
                     $niveau=Niveau::where('abbreviation','=',$search)->first();
                     if($niveau)
                         return redirect('niveaux/'.$niveau->id);
                     else
-                        return redirect('/s')->with('rep',"Ce niveau n'existe pas ! ");
+                        return redirect('/s')->with('rep',"Ce niveau n'existe pas ! ")->withInput();
                     break;
                 case 2:
                     $niveau=Niveau::where('abbreviation','=',$search)->first();
                     if($niveau)
                         return redirect('eleves/'.$niveau->id);
                     else
-                        return redirect('/s')->with('rep',"Ce niveau n'existe pas ! ");
+                        return redirect('/s')->with('rep',"Ce niveau n'existe pas ! ")->withInput();
                     break;
                 case 3:
                     $module=Module::where('abbreviation','=',$search)->first();
                     if($module)
                         return redirect('modules/'.$module->id);
                     else
-                        return redirect('/s')->with('rep',"Ce module n'existe pas ! ");
+                        return redirect('/s')->with('rep',"Ce module n'existe pas ! ")->withInput();
                     break;
                 default:
                     return redirect('/s');
