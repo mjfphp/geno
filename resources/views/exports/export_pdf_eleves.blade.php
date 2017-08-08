@@ -81,7 +81,14 @@
                 @endif
 
                 @if($cases->Niveau=="on")
-                <td class="text-center">{{$item->abbreviation}}</td>
+                <td class="text-center">
+                    @foreach($niveaux as $niveau)
+                        @if($niveau->id==$item->niveau_id)
+                            {{$niveau->abbreviation}}
+                            <?php break;?>
+                        @endif
+                    @endforeach
+                </td>
                 @endif
 
             </tr>
