@@ -39,7 +39,6 @@ Route::group(['middleware' => 'AdminSession'], function () {
     Route::resource('/matieres',"AmatieresC");
     Route::resource('/eleves',"AelevesC");
 
-
 });
 
 ####################################################

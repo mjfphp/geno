@@ -49,10 +49,17 @@ class Handler extends ExceptionHandler
             switch ($e->getStatusCode()) {
                 // not found
                 case 404:
-                    return response()->view('errors.404',[],404);
+
+                    $e->err = "Page Not Found : 404";
+                    $e->msg = "Sorry - Page Not Found!";
+                    $e->descp = "The page you are looking for was moved, removed, renamed or might never existed. You stumbled upon a broken link";
+                    return response()->view('errors.err',['e' => $e],404);
                     break;
                 // internal server error
                 case '500':
+                $e->err = "Page Not Found : 500";
+                $e->msg = "message";
+                $e->descp = "Description";
                     return response()->view('errors.500',[],500);
                     break;
                 default:
