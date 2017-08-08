@@ -8,6 +8,7 @@
   <link rel="stylesheet"  href="{{ asset('css/tree.css') }}">
   <link rel="stylesheet"  href="{{ asset('css/modal.css') }}">
   <link rel="stylesheet"  href="{{ asset('css/tables.css') }}">
+  @yield('css-child')
 @endsection
 
 @section('header_title')

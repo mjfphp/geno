@@ -1,0 +1,23 @@
+@import url('https://fonts.googleapis.com/css?family=Anton|Saira+Extra+Condensed');
+.erreur-cont{
+  display: inline-block;
+  width: 100%;
+}
+.flex-cont{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+h2 {
+  font-family: "Anton" ,sans-serif;
+  font-size: 40px;
+}
+
+p{
+  font-family: "Saira Extra Condensed",sans-serif;
+  font-size: 20px;
+  font-weight: 700;
+  text-align: center;
+}

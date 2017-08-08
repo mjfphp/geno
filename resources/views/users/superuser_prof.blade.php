@@ -256,7 +256,7 @@
                         <input id='fileid' type='file' name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onchange="resetUp()">
                         <div id="up_result"></div>
                         <div class="inline">
-                            <button type="button" class="pure-button pure-button-primary" onclick="up()">valider</button>
+                            <button type="button" class="pure-button pure-button-primary" onclick="up('/profs/up')">valider</button>
                             <button type="button" id="cancel_upload" class="cancel_upload pure-button pure-button-primary">Annuler</button>
                         </div>
                     </form>

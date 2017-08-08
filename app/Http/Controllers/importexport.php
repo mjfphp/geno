@@ -77,9 +77,7 @@ class importexport extends Controller
                 $reader=Excel::load($path);
                 $results = $reader->get();
                 $lignes=$reader->toArray();
-                $error=false;
                 foreach($lignes as $i=>$ligne){
-                    $error=false;
                     $l=$i+1; //in case of errors show the ligne where the error is
                     $users_validator=Validator::make($ligne,$val_rules);
                     if($users_validator->fails()){
@@ -87,12 +85,8 @@ class importexport extends Controller
                             "message"=>"ligne $l:\r\n".$users_validator->errors()->first(),
                             "style"=>"text-danger"
                         ];
-                        $error=true;
                         return response()->json($arr);
                     }
-                }
-                if($error==false){//aucune erreur, insertion ds la bdd....
-                    foreach($lignes as $i=>$ligne){
                         $prof = new User;
                         $prof->name   = $ligne["nom"];
                         $prof->email  = $ligne["email"];
@@ -106,14 +100,7 @@ class importexport extends Controller
                         $prof->prenom= $ligne["prenom"];
                         $prof->password=Hash::make('123456');
                         $prof->save();
-                    }
-                }
-                if(!$error){
-                    $arr=[
-                        "message"=>$l." lignes insérées",
-                        "style"=>"text-success"
-                    ];
-                    return response()->json($arr);
+
                 }
             }
         }else{

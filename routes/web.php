@@ -38,7 +38,9 @@ Route::group(['middleware' => 'AdminSession'], function () {
     Route::resource('/modules',"AmodulesC");
     Route::resource('/matieres',"AmatieresC");
     Route::resource('/eleves',"AelevesC");
-
+    Route::post('/eleves/up',"IEleves@upload");
+    Route::post('/eleves/doE',"EEleves@download");
+    Route::post('/eleves/doP',"EEleves@downloadPdf");
 
 });
 
