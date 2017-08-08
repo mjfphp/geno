@@ -72,7 +72,7 @@
 
                 @section('fil_tab')
                   <h4 class="h4">Détails du Module :</h4>
-                        <table class="table" id="table">
+                        <table class="table" id="table1">
                             <thead>
                                 <tr>
                                     <th class="hidden text-center">Id</th>
@@ -153,7 +153,7 @@
                                 @endforeach
                              </select>
 
-                             {{ Form::text('niveau_id',$niveau->id, array('id' => ('niveau_id') ) ) }}
+                             {{ Form::hidden('niveau_id',$niveau->id, array('id' => ('niveau_id') ) ) }}
 
                              <label for="departement_id">Département</label>
                              <select id="departement_id" name="departement_id">

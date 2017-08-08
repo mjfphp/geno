@@ -260,12 +260,12 @@
                             <button type="button" id="cancel_upload" class="cancel_upload pure-button pure-button-primary">Annuler</button>
                         </div>
                     </form>
-                    
+
 
                 </div>
             </div>
         </div>
-        
+
         <div id="export_pdf" class="modal">
             <div class="modal-content">
                 <div class="modal-header">

@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css?family=Cabin|Karla|Lato|Rubik');
+
+.left-side{
+  display: inline-block;
+  position: fixed;
+  width: 215px;
+  top: 70px;
+  margin-left: -20px;
+  padding-bottom: 0 !important;
+  margin-bottom: 0 !important;
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 2px 7px 0 rgba(0, 0, 0, 0.24);
+  z-index: !important;
+}
+
+/* ————————————————————–
+  Tree core styles
+*/
+.tree {
+  position: absolute;
+  font-family: "Karla" ,sans-serif;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  font-size: 15px;
+  overflow: scroll;
+  padding-top: 50px;
+}
+
+.tree input {
+  position: absolute;
+  clip: rect(0, 0, 0, 0);
+  }
+
+.tree input ~ ul { display: none; }
+
+.tree input:checked ~ ul { display: block; }
+
+/* ————————————————————–
+  Tree rows
+*/
+.tree li {
+  line-height: 1.2;
+  position: relative;
+  padding: 0 0 1em 1em;
+  list-style-type: none;
+}
+  .tree li span {
+    font-size: 14px;
+    font-weight: 600;
+  }
+  .tree span:hover a {
+    text-decoration: none;
+  }
+.tree ul{
+  padding:0px;
+}
+
+.tree ul li { padding: 1em 0 0 1em; }
+
+.tree > li:last-child { padding-bottom: 0; }
+
+/* ————————————————————–
+  Tree labels
+*/
+.tree_label {
+  position: relative;
+  display: inline-block;
+  background: #fff;
+  margin: 0px;
+  }
+
+a.tree_label  {
+  cursor: pointer;
+  margin:0px 0px 0px 5px;
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+a.tree_label:hover { color: #666; }
+
+/* ————————————————————–
+  Tree expanded icon
+*/
+.tree_label:before {
+  color: black;
+  position: relative;
+  z-index: -1;
+  float: left;
+  margin: 0 1em 0 -2em;
+  width: 1em;
+  height: 1em;
+  border-radius: 1em;
+  content: '>';
+  text-align: center;
+  line-height: .9em;
+  }
+
+:checked ~ a.tree_label::before {
+  content: url(http://www.nxworld.net/codepen/css-scroll-down-button/bg02.jpg) center center / cover no-repeat;
+  transform: rotate(90deg);
+ }
+ /* ————————————————————–
+   Tree scrollBar
+ */
+
+.tree::-webkit-scrollbar
+{
+	width: 5px;
+	background-color: #F5F5F5;
+}
+
+.tree::-webkit-scrollbar-thumb
+{
+	background-color: #212121;
+}

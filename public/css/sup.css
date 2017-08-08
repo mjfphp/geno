@@ -157,12 +157,19 @@ input:disabled{
   opacity: 1;
   z-index: 1;
 }
+
 .buttons1 button:nth-child(1){
-  background-color: #ae173d;
+  background-color: #337ab7;
 }
 .buttons1 button:nth-child(2){
-  background-color: #00c853;
+  background-color: #ae173d;
 }
 .buttons1 button:nth-child(3){
+  background-color: #00796B;
+}
+.buttons1 button:nth-child(4){
+  background-color: #00c853;
+}
+.buttons1 button:nth-child(5){
   background-color: #004d40;
 }

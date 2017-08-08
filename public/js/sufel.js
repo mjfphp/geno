@@ -32,13 +32,13 @@ $(document).ready(function(){
             }
           });
           $('#editEl #grp').find("option").each(function(){
-            if($(this).text() === el[5].innerText){
+            if($(this).text() === el[4].innerText){
               $(this).attr('selected','selected');
             }else{
               $(this).removeAttr('selected');
             }
           });
-          $('#editEl #email').val(el[4].innerText);
+          $('#editEl #email').val(el[5].innerText);
           $('#editEl #date_naissance').val(el[3].innerText.replace(/\//g ,"-").split("-").reverse().join("-"));
           $('#editEl #lieu_naissance').val(el[2].innerText);
           $('#editEl #ville').val(el[1].innerText);
