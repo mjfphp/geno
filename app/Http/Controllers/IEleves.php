@@ -104,8 +104,7 @@ class IEleves extends Controller
         $eleve->date_naissance=$ligne['date_naissance'];
         $eleve->ville = $ligne['ville'];
         $eleve->statut =$ligne['statut'];
-        $eleve->niveau_id=1;
-//        $eleve->niveau_id=$ligne['niveau_id'];
+        $eleve->niveau_id=$ligne['niveau_id'];
         $eleve->num =$ligne['num'];
         $eleve->grp=$ligne['grp'];
         $eleve->save();

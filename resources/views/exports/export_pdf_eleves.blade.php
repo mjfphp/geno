@@ -81,7 +81,7 @@
                 @endif
 
                 @if($cases->Niveau=="on")
-                <td class="text-center">{{$item->niveau_id}}</td>
+                <td class="text-center">{{$item->abbreviation}}</td>
                 @endif
 
             </tr>
