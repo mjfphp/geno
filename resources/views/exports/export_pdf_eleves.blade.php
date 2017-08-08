@@ -5,6 +5,11 @@
     </head>
 <body>
 <div class="tab">
+    <div class="header">
+        <a href="#"><img src="images/ensa.png"></a>
+        <h1>Liste des eleves</h1>
+    </div>
+
     <table class="table" id="table">
         <thead>
             <tr>
@@ -76,7 +81,7 @@
                 @endif
 
                 @if($cases->Niveau=="on")
-                <td class="text-center">{{$item->niveau_id}}</td>
+                <td class="text-center">{{$item->abbreviation}}</td>
                 @endif
 
             </tr>

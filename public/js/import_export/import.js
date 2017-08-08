@@ -7,7 +7,6 @@ $(document).ready(function(){
     });
     up = function(link){
         if(link!='/eleves/up' && link!='/profs/up')  return 0;
-
         resetMsg();
         file=$("#fileid")[0].files[0];
         token=$("input[name=_token]").val();
@@ -39,7 +38,6 @@ $(document).ready(function(){
             contentType: false,
             data: content,
             success: function(data) {
-//                console.log(data);
                 if(data["message"]===undefined){
                     $("#up_result").html(data);
                 }

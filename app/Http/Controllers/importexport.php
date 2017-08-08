@@ -109,7 +109,7 @@ class importexport extends Controller
         }
     }
     
-    public function download()
+    public function download(Request $request)
     {
         $profs=$this->Users();
         $depts = $this->Departements();
@@ -118,42 +118,73 @@ class importexport extends Controller
               ->setCreator('prof name')
               ->setCompany('Ensa Tanger')
               ->setDescription('Liste des professeurs inscrits');
-        $sheet=$excel->sheet('1',function($sheet)use($profs){
+        $sheet=$excel->sheet('1',function($sheet)use($profs,$request){
+            $default=array('nom','prenom','email');
+            if($request->ERef=='on'){
+                $default[]='REFERENCE';
+            }
+            if($request->EGrade=='on'){
+                $default[]='GRADE';
+            }
+            if($request->ESpe=='on'){
+                $default[]='SPECIALITE';
+            }
+            if($request->EAddr=='on'){
+                $default[]='ADDRESSE';
+            }
+            if($request->ETel=='on'){
+                $default[]='TELEPHONE';
+            }
+            if($request->EVille=='on'){
+                $default[]='VILLE';
+            }
+            if($request->EDep=='on'){
+                $default[]='DEPARTEMENT';
+            }
+            
             $sheet
                 ->setAllBorders('none')
-                ->appendRow(array(
-                'id', 'ref prof', 'nom', 'prénom', 'grade', 'spécialité', 'email', 'adresse', 'ville', 'num', 'intitulé département')
-                );
-            $sheet
-                ->cells('A1:k1',function($cell){
+                ->appendRow($default)
+                ->cells('A1:j1',function($cell){
                         $cell
                             ->setFontWeight('bold')
                             ->setAlignment('center')
                             ->setValignment('center')
-                            ->setBackground('#212121')
-                            ->setFontColor("#FFFFFF")
                             ->setValignment('center')
                             ->setFontSize(13);
                     })
                 ->setHeight(1,30);
-            //Helvetica Neue",Helvetica,Arial,sans-serif
             $i=2;
             foreach($profs as $prof){
-                $dept=$prof->departement["intitule"];
+                $dept=$prof->departement;
                 $data=$prof->toArray();
                 $dataExcel=array(
-                    "id"=>$data["id"],
-                    "refprof"=>$data["refprof"],
-                    "name"=>$data["name"],
-                    "prenom"=>$data["prenom"],
-                    "grade"=>$data["grade"],
-                    "specialite"=>$data["specialite"],
-                    "email"=>$data["email"],
-                    "adress"=>$data["adress"],
-                    "ville"=>$data["ville"],
-                    "num"=>$data["num"],
-                    "id_dept"=>$dept,
-                );
+                    $data["name"],
+                    $data["prenom"],
+                    $data["email"],);
+                
+            if($request->ERef=='on'){
+                $dataExcel[]=$data["refprof"];
+            }
+            if($request->EGrade=='on'){
+                $dataExcel[]=$data["grade"];
+            }
+            if($request->ESpe=='on'){
+                $dataExcel[]=$data["specialite"];
+            }
+            if($request->EAddr=='on'){
+                $dataExcel[]=$data["adress"];
+            }
+            if($request->ETel=='on'){
+                $dataExcel[]=$data["num"];
+            }
+            if($request->EVille=='on'){
+                $dataExcel[]=$data["ville"];
+            }
+            if($request->EDep=='on'){
+                $dataExcel[]=$dept["intitule"];
+            }
+
                 $sheet
                     ->appendRow($i,$dataExcel)
                     ->setHeight($i,30)

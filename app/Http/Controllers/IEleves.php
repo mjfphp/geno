@@ -14,7 +14,7 @@ use Maatwebsite\Excel\Writers\CellWriter;
 use Maatwebsite\Excel\Facades\Excel;
 use PDF;
 
-class Ieleves extends Controller
+class IEleves extends Controller
 {
 
     public function Users()
@@ -27,12 +27,10 @@ class Ieleves extends Controller
         $depts = Departement::all();
         return $depts;
     }
-
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
-
      public function upload(Request $request)
     {
         $val_rules=[
@@ -84,7 +82,8 @@ class Ieleves extends Controller
                 $reader=Excel::load($path);
                 $results = $reader->get();
                 $lignes=$reader->toArray();
-                foreach($lignes as $i=>$ligne){
+                foreach($lignes as $i=>$ligne)
+                {
                     $l=$i+1; //in case of errors show the ligne where the error is
                     $users_validator=Validator::make($ligne,$val_rules);
                     if($users_validator->fails()){
@@ -94,26 +93,29 @@ class Ieleves extends Controller
                         ];
                         return response()->json($arr);
                     }
-                        $prof = new User;
-                        $prof->name   = $ligne["nom"];
-                        $prof->email  = $ligne["email"];
-                        $prof->refprof =$ligne["refprof"];
-                        $prof->adress = $ligne["adresse"];
-                        $prof->ville = $ligne["ville"];
-                        $prof->specialite = $ligne["specialite"];
-                        $prof->departement_id=$ligne["iddept"];
-                        $prof->num = $ligne["tel"];
-                        $prof->grade =$ligne["grade"];
-                        $prof->prenom= $ligne["prenom"];
-                        $prof->password=Hash::make('123456');
-//                        $prof->confirmation_token=Hash::make(str_random(8));
-                        $prof->save();
-
+        $eleve = new Eleve;
+        $eleve->nom  = $ligne['nom'];
+        $eleve->prenom=$ligne ['prenom'];
+        $eleve->email  = $ligne['email'];
+        $eleve->apoge = $ligne['apoge'];
+        $eleve->cne = $ligne['cne'];
+        $eleve->cin = $ligne['cin'];
+        $eleve->lieu_naissance=$ligne['lieu_naissance'];
+        $eleve->date_naissance=$ligne['date_naissance'];
+        $eleve->ville = $ligne['ville'];
+        $eleve->statut =$ligne['statut'];
+        $eleve->niveau_id=$ligne['niveau_id'];
+        $eleve->num =$ligne['num'];
+        $eleve->grp=$ligne['grp'];
+        $eleve->save();
                 }
             }
         }else{
             $arr["message"]="Aucun fichier choisi!";
             $arr["class"]="text-danger";
         }
+         $arr["message"]="$i lignes ajoutées!";
+         $arr["class"]="success";
+         return response()->json($arr);
     }
 }
