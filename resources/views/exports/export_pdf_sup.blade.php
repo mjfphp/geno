@@ -14,21 +14,23 @@
             <tr>
                 <th class="text-center">Nom</th>
                 <th class="text-center">Prenom</th>
-                <th class="text-center">Email</th>
                 
+                @if($cases->Email=="on")
+                <th class="text-center">EMAIL</th>
+                @endif
                 @if($cases->Ref=="on")
-                <th class="text-center">Ref prof</th>
+                <th class="text-center">REF PROF</th>
                 @endif
                 @if($cases->Grade=="on")
-                <th class="text-center">Grade</th>
+                <th class="text-center">GRADE</th>
                 @endif
 
                 @if($cases->Spe=="on")
-                <th class="text-center">Spécialité</th>
+                <th class="text-center">SPECIALITE</th>
                 @endif
                 
                 @if($cases->Addr=="on")
-                <th class="text-center">Adresse</th>
+                <th class="text-center">ADRESSE</th>
                 @endif
 
                 @if($cases->Tel=="on")
@@ -47,11 +49,14 @@
         </thead>
         <tbody>
         @foreach($profs as $item)
-            <tr class="item{{$item->id}}">
+            <tr>
                 <td>{{$item->name}}</td>
                 <td>{{$item->prenom}}</td>
-                <td>{{$item->email}}</td>
                 
+                @if($cases->Email=="on")
+                <td>{{$item->email}}</td>
+                @endif
+
                 @if($cases->Ref=="on")
                 <td>{{$item->refprof}}</td>
                 @endif

@@ -14,8 +14,6 @@
   <script src="{{ URL::asset('js/import_export/import.js')}}"></script>
   <script src="{{ URL::asset('js/import_export/export.js') }}"></script>
 @endsection
-
-<<<<<<< HEAD
           @section('buttons1')
             <button class="btnstyle" type="button" id="addel" name="addel">Ajouter Un Eleve</button>
             @if ($errors->any())
@@ -28,7 +26,6 @@
                             </div>
             @endif
             <div id="addeleve" class="modal">
-=======
 @section('buttons1')
     <button class="btnstyle" type="button" id="addel" name="addel">Ajouter Un Eleve</button>
     <button type="button" id ="import_btn" class="btnstyle"> Importer</button>
@@ -36,7 +33,6 @@
     <button type="button" id ="exprtP" name="exprtP" form="doPdf" class="btnstyle">Exporter Pdf</button>
 
 <div id="addeleve" class="modal">
->>>>>>> d4f6423fa9ac85a937be255f8cf36b3d780cef73
                   <div class="modal-content">
                      <div class="modal-header">
                        <div id="nav-icon1" class="open">
@@ -288,6 +284,10 @@
                 <div class="modal-body">
                     <form class="form-group" method="post" id="up" enctype="multipart/form-data">
                         {{csrf_field()}}
+                        <div class="checkbox">
+                            <label for="all" class="inline">
+                                <input id='all' type='checkbox' name="all" form="doP" onchange="check('pdf')">Check all</label>
+                        </div>
                         <div class="checkbox">
                             <label for="CIN" class="inline">
                                 <input id='CIN' type='checkbox' name="CIN" form="doP">CIN</label>

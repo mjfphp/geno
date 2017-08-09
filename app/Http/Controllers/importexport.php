@@ -58,7 +58,6 @@ class importexport extends Controller
         $file_rules=array(
             'file' =>'required|file|max:10000|mimes:xls,xlsx'
         );
-        $file = $request->file('file');
         $file_validator = Validator::make($request->all(),$file_rules,$file_messages);
             if ($file_validator->fails()) {
                 $arr=[
@@ -75,7 +74,6 @@ class importexport extends Controller
             $upload=Storage::put($destination,file_get_contents($path));
             if($upload){
                 $reader=Excel::load($path);
-                $results = $reader->get();
                 $lignes=$reader->toArray();
                 foreach($lignes as $i=>$ligne){
                     $l=$i+1; //in case of errors show the ligne where the error is
@@ -112,14 +110,16 @@ class importexport extends Controller
     public function download(Request $request)
     {
         $profs=$this->Users();
-        $depts = $this->Departements();
         $excel=Excel::create('Profs')
               ->setTitle('liste des professeurs')
               ->setCreator('prof name')
               ->setCompany('Ensa Tanger')
               ->setDescription('Liste des professeurs inscrits');
         $sheet=$excel->sheet('1',function($sheet)use($profs,$request){
-            $default=array('nom','prenom','email');
+            $default=array('NOM','PRENOM');
+            if($request->Eemail=='on'){
+                $default[]='EMAIL';
+            }
             if($request->ERef=='on'){
                 $default[]='REFERENCE';
             }
@@ -160,9 +160,11 @@ class importexport extends Controller
                 $data=$prof->toArray();
                 $dataExcel=array(
                     $data["name"],
-                    $data["prenom"],
-                    $data["email"],);
+                    $data["prenom"],);
                 
+            if($request->Eemail=='on'){
+                $dataExcel[]=$data["email"];
+            }
             if($request->ERef=='on'){
                 $dataExcel[]=$data["refprof"];
             }

@@ -279,6 +279,15 @@
                     <form class="form-group" method="post" id="up" enctype="multipart/form-data">
                         {{csrf_field()}}
                         <div class="checkbox">
+                            <label for="all" class="inline">
+                                <input id='all' type='checkbox' name="all" form="doP" onchange="check('pdf')">Check all</label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Email" class="inline">
+                                <input id='Email' type='checkbox' name="Email" form="doP">Email
+                            </label>
+                        </div>
+                        <div class="checkbox">
                             <label for="Ref" class="inline">
                                 <input id='Ref' type='checkbox' name="Ref" form="doP">Ref prof
                             </label>
@@ -333,6 +342,15 @@
                 <div class="modal-body">
                     <form class="form-group" method="post" id="do">
                         {{csrf_field()}}
+                        <div class="checkbox">
+                            <label for="Eall" class="inline">
+                                <input id='Eall' type='checkbox' name="all" form="doP" onchange="check('excel')">Check all</label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Eemail" class="inline">
+                                <input id='Eemail' type='checkbox' name="Eemail" form="doE">Email
+                            </label>
+                        </div>
                         <div class="checkbox">
                             <label for="ERef" class="inline">
                                 <input id='ERef' type='checkbox' name="ERef" form="doE">Ref prof

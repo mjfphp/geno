@@ -13,6 +13,20 @@ $(document).ready(function(){
     $("#exprtE").click(function(){
         $("#export_excel").css("display","block");
     });
+check = function(type){
+    if(type=="pdf"){
+        is=$("#all").prop("checked");
+       $("#export_pdf input[type='checkbox']").prop('checked',is);
+        return true;
+    }
+    if(type=="excel"){
+        is=$("#Eall").prop("checked");
+       $("#export_excel input[type='checkbox']").prop('checked',is);
+        return true;
+    }
+
+    
+}
 cancel_export = function(){
     $("#export_pdf input[type='checkbox']").prop('checked',false);
     $("#export_excel input[type='checkbox']").prop('checked',false);
