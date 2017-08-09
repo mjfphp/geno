@@ -22,16 +22,14 @@ class AniveauxC extends Controller
     {
         $validator = Validator::make($request->all(), [
             'filiere_id'=>'required',
-            'abbreviation'=>'required|min:1|max:7|unique:niveaus',
+            'abbreviation'=>'required|unique:niveaus',
             'nbg' =>'required|max:1'
-
-
         ]);
 
 
 
         if ($validator->fails()) {
-            return redirect('/filieres'.$request->input('filiere_id'))
+            return redirect()->back()
                 ->withErrors($validator)
                 ->withInput();
         }

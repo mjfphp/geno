@@ -11,6 +11,15 @@
         @section('buttons1')
           <div class="buttons1">
             <button class="btnstyle" type="button" id="addmt">Ajouter Une matière</button>
+            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+            @endif
             <div id="addmatiere" class="modal">
                   <div class="modal-content">
                      <div class="modal-header">

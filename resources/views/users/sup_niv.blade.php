@@ -41,6 +41,15 @@
        <div class="t">
          <div class="buttons1">
             <button class="btnstyle" type="button" id="addniv" name="addniv">Ajouter Un Niveau</button>
+            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+            @endif
             <div id="addniveau" class="modal">
                   <div class="modal-content">
                      <div class="modal-header">

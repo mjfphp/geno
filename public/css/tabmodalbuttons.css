@@ -5,6 +5,10 @@ body{
   overflow: hidden;
   z-index: -1;
 }
+.alert {
+  position: absolute;
+  left: 400px;
+}
 
 .wrapper{
   display: inline-block;
@@ -335,4 +339,46 @@ tr:hover,tr:nth-child(odd):hover,tr:focus,tr:visited{
 .fil_tab::-webkit-scrollbar-thumb,.modal::-webkit-scrollbar-thumb
 {
 	background-color: #212121;
+}
+
+.buttons1{
+  display: inline-block;
+  float: left;
+  margin-top: 10px;
+  margin-left: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.buttons1 .btnstyle {
+  font-family: "Roboto", sans-serif;
+  text-transform: uppercase;
+  outline: 0;
+  border: 0;
+  margin: 3px;
+  padding: 16px;
+  color: #FFFFFF;
+  -webkit-transition: all 0.3 ease;
+  transition: all 0.3 ease;
+  cursor: pointer;
+  border-radius: 7px;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.2), 0 2px 5px 0 rgba(0, 0, 0, 0.24);
+  opacity: 1;
+  z-index: 1;
+}
+
+.buttons1 button:nth-child(1){
+  background-color: #337ab7;
+}
+.buttons1 button:nth-child(2){
+  background-color: #ae173d;
+}
+.buttons1 button:nth-child(3){
+  background-color: #00796B;
+}
+.buttons1 button:nth-child(4){
+  background-color: #00c853;
+}
+.buttons1 button:nth-child(5){
+  background-color: #004d40;
 }

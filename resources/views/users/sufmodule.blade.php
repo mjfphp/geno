@@ -10,6 +10,15 @@
 
           @section('buttons1')
             <button class="btnstyle" type="button" id="addmod" name="addmod">Ajouter Un module</button>
+            @if ($errors->any())
+                            <div class="alert alert-danger">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                        <li>{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+            @endif
             <div id="addmodule" class="modal">
                   <div class="modal-content">
                      <div class="modal-header">

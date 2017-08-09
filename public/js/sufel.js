@@ -39,7 +39,7 @@ $(document).ready(function(){
             }
           });
           $('#editEl #email').val(el[5].innerText);
-          $('#editEl #date_naissance').val(el[3].innerText.replace(/\//g ,"-").split("-").reverse().join("-"));
+          $('#editEl #date_naissance').val(el[3].innerText);
           $('#editEl #lieu_naissance').val(el[2].innerText);
           $('#editEl #ville').val(el[1].innerText);
           $('#editEl #num').val(el[0].innerText);

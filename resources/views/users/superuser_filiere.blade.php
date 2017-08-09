@@ -12,6 +12,15 @@
     <button class="btnstyle" type="button" id="addf" name="addf">Ajouter Une filière</button>
     <button class="btnstyle" type="button" id ="addd" name="addd">Ajouter Un département</button>
     <button class="btnstyle" type="button" class="hidden" id ="imprt" name="imprt">Importer</button>
+    @if ($errors->any())
+                    <div class="alert alert-danger">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                                <li>{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+    @endif
     <div id="addfiliere" class="modal">
           <div class="modal-content">
              <div class="modal-header">

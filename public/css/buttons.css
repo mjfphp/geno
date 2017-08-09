@@ -40,3 +40,8 @@
 .buttons1 button:nth-child(5){
   background-color: #004d40;
 }
+
+.alert{
+  position: absolute;
+  left: 400px;
+}
