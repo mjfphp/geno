@@ -14,18 +14,7 @@
   <script src="{{ URL::asset('js/import_export/import.js')}}"></script>
   <script src="{{ URL::asset('js/import_export/export.js') }}"></script>
 @endsection
-          @section('buttons1')
-            <button class="btnstyle" type="button" id="addel" name="addel">Ajouter Un Eleve</button>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-            @endif
-            <div id="addeleve" class="modal">
+ 
 @section('buttons1')
     <button class="btnstyle" type="button" id="addel" name="addel">Ajouter Un Eleve</button>
     <button type="button" id ="import_btn" class="btnstyle"> Importer</button>
@@ -342,4 +331,4 @@
         {{csrf_field()}}
     </form>
 
-        @endsection
+         @endsection
