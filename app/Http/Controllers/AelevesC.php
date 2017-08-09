@@ -68,7 +68,9 @@ class AelevesC extends Controller
           $niveau=Niveau::find($id);
           if($niveau)
           {
-              return view("users.sufel")->with('niveau',$niveau);
+              return view("users.sufel")
+                  ->with('niveau',$niveau)
+                  ->with('id',$id);
           }
          else
              return redirect()->back();

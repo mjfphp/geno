@@ -18,34 +18,69 @@ use PDF;
 class EEleves extends Controller
 {
 
-    public function eleves()
+    public function eleves($niv)
     {
-        return Eleve::all();
+        return Eleve::where('niveau_id','=',$niv)->get();
     }
     
-    public function niveaux(){
-        return Niveau::all();
+    public function niveaux($niv){
+        return Niveau::find($niv)->abbreviation;
     }
     /**
      * @param Request $request
      * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     
-    public function download()
+    public function download(Request $request)
     {
-        $eleves=$this->eleves();
-        $niveaux = $this->niveaux();
+        if($request->niv==null){
+            return false;
+        }
+        $eleves=$this->eleves($request->niv);
+        $niveau = $this->niveaux($request->niv);
         $excel=Excel::create('Eleves')
               ->setTitle('liste des élèves')
               ->setCreator('prof name')
               ->setCompany('Ensa Tanger')
               ->setDescription('Liste des élèves inscrits');
-        $sheet=$excel->sheet('1',function($sheet)use($eleves,$niveaux){
+        $sheet=$excel->sheet('1',function($sheet)use($eleves,$request,$niveau){
+            $default=array('CNE','NOM','PRENOM');
+            if($request->ECIN=='on'){
+                $default[]='CIN';
+            }
+            if($request->EAPOGEE=='on'){
+                $default[]='APOGEE';
+            }
+            if($request->EDate_naissance=='on'){
+                $default[]='DATE NAISSANCE';
+            }
+            if($request->Elieu_naisasnce=='on'){
+                $default[]='LIEU NAISSANCE';
+            }
+            if($request->EEMAIL=='on'){
+                $default[]='EMAIL';
+            }
+            if($request->EVille=='on'){
+                $default[]='VILLE';
+            }
+            if($request->ETel=='on'){
+                $default[]='NUM';
+            }
+            if($request->EGroupe=='on'){
+                $default[]='GROUPE';
+            }
+            if($request->ENiveau=='on'){
+                $default[]='NIVEAU';
+            }
+            if($request->Filiere=='on'){
+                $default[]='FILIERE';
+            }
+            if($request->EStatut=='on'){
+                $default[]='STATUT';
+            }
             $sheet
                 ->setAllBorders('none')
-                ->appendRow(array(
-                'APOGEE', 'CNE', 'CIN','NOM', 'PRENOM', 'DATE NAISSANCE', 'LIEU NAISSANCE', 'EMAIL', 'VILLE', 'NUM', 'GROUPE', 'NIVEAU','FILIERE','STATUT')
-                );
+                ->appendRow($default);
             $sheet
                 ->cells('A1:N1',function($cell){
                         $cell
@@ -60,27 +95,45 @@ class EEleves extends Controller
                 ->setHeight(1,30);
             $i=2;
             foreach($eleves as $eleve){
-//                $niveau=$eleves->niveau["abbreviation"];
                 $data=$eleve->toArray();
-                $niv=Niveau::find($data["niveau_id"]);
-                $niveau=$niv->abbreviation;//hard way */
-
                 $dataExcel=array(
-                    'APOGEE'=>$data["apoge"],
                     'CNE'=>$data["cne"],
-                    'CIN'=>$data["cin"],
                     'NOM'=>$data["nom"],
                     'PRENOM'=>$data["prenom"],
-                    'DATE NAISSANCE'=>$data["date_naissance"],
-                    'LIEU NAISSANCE'=>$data["lieu_naissance"],
-                    'EMAIL'=>$data["email"],
-                    'VILLE'=>$data["ville"],
-                    'NUM'=>$data["num"],
-                    'GROUPE'=>$data["grp"],
-                    'NIVEAU'=>$niveau,
-//                  'FILIERE'=>$filiere,
-//                    'STATUT'=>$data["statut"],
                 );
+            if($request->ECIN=='on'){
+                $dataExcel[]=$data["cin"];
+            }
+            if($request->EAPOGEE=='on'){
+                $dataExcel[]=$data["apoge"];
+            }
+            if($request->EDate_naissance=='on'){
+                $dataExcel[]=$data["date_naissance"];
+            }
+            if($request->Elieu_naisasnce=='on'){
+                $dataExcel[]=$data["lieu_naissance"];
+            }
+            if($request->EEMAIL=='on'){
+                $dataExcel[]=$data["email"];
+            }
+            if($request->EVille=='on'){
+                $dataExcel[]=$data["ville"];
+            }
+            if($request->ETel=='on'){
+                $dataExcel[]=$data["num"];
+            }
+            if($request->EGroupe=='on'){
+                $dataExcel[]=$data["grp"];
+            }
+            if($request->ENiveau=='on'){
+                $dataExcel[]=$niveau;
+            }
+            if($request->Filiere=='on'){
+                $dataExcel[]='FILIERE';
+            }
+            if($request->EStatut=='on'){
+                $dataExcel[]='STATUT';
+            }
                 $sheet
                     ->appendRow($i,$dataExcel)
                     ->setHeight($i,30)
@@ -102,12 +155,12 @@ class EEleves extends Controller
     
     public function downloadPdf(Request $request)
     {
-        $eleves=$this->eleves();
-        $niveaux = $this->niveaux();
+        $eleves=$this->eleves($request->niv);
+        $niveau = $this->niveaux($request->niv);
         $prof_list=  view("exports.export_pdf_eleves")
                     ->with("cases",$request)
                     ->with('eleves',$eleves)
-                    ->with('niveaux',$niveaux)
+                    ->with('niveau',$niveau)
                     ->render()
             ;
         return PDF::loadHtml($prof_list)

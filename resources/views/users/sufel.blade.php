@@ -18,9 +18,8 @@
 @section('buttons1')
     <button class="btnstyle" type="button" id="addel" name="addel">Ajouter Un Eleve</button>
     <button type="button" id ="import_btn" class="btnstyle"> Importer</button>
-    <button type="submit" id ="exprtE" name="exprtE" form="doE" class="btnstyle">Exporter Excel</button>
+    <button type="submit" id ="exprtE" name="exprtE" form="doEstop" class="btnstyle">Exporter Excel</button>
     <button type="button" id ="exprtP" name="exprtP" form="doPdf" class="btnstyle">Exporter Pdf</button>
-
 <div id="addeleve" class="modal">
                   <div class="modal-content">
                      <div class="modal-header">
@@ -206,10 +205,9 @@
                            <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
                          </div>
                        </form>
-                           </div>
-                           </div>
-
-                    </div>
+                         </div>
+                        </div>
+                </div>
                     <div id="deleteEl" class="modal">
                           <div class="modal-content">
                              <div class="modal-header">
@@ -278,6 +276,14 @@
                                 <input id='all' type='checkbox' name="all" form="doP" onchange="check('pdf')">Check all</label>
                         </div>
                         <div class="checkbox">
+                            <label for="CNE" class="inline">
+                                <input id='CNE' type='checkbox' name="CNE" form="doP">CNE</label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="EMAIL" class="inline">
+                                <input id='EMAIL' type='checkbox' name="EMAIL" form="doP">EMAIL</label>
+                        </div>
+                        <div class="checkbox">
                             <label for="CIN" class="inline">
                                 <input id='CIN' type='checkbox' name="CIN" form="doP">CIN</label>
                         </div>
@@ -311,11 +317,6 @@
                                 <input id='Groupe' type='checkbox' name="Groupe" form="doP">Groupe
                             </label>
                         </div>
-                        <div class="checkbox">
-                            <label for="Niveau" class="inline">
-                                <input id='Niveau' type='checkbox' name="Niveau" form="doP">Niveau
-                            </label>
-                        </div>
                         <div class="inline">
                             <button type="submit" class="pure-button pure-button-primary" form="doP">valider</button>
                             <button type="button" id="cancel_export" class="pure-button pure-button-primary">Annuler</button>
@@ -324,11 +325,83 @@
                 </div>
             </div>
         </div>
+                <div id="export_excel" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="nav-icon1" class="open" onclick="cancel_export()">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <h4>Les champs à exporter</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" method="post" id="do">
+                        {{csrf_field()}}
+                        <div class="checkbox">
+                            <label for="Eall" class="inline">
+                                <input id='Eall' type='checkbox' name="all" form="doP" onchange="check('excel')">Check all</label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="ECIN" class="inline">
+                                <input id='ECIN' type='checkbox' name="ECIN" form="doE">Cin</label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="EEMAIL" class="inline">
+                                <input id='EEMAIL' type='checkbox' name="EEMAIL" form="doE">Email</label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="EAPOGEE" class="inline">
+                                <input id='EAPOGEE' type='checkbox' name="EAPOGEE" form="doE">Apogée</label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="EDate_naissance" class="inline">
+                                <input id='EDate_naissance' type='checkbox' name="EDate_naissance" form="doE">Date naissance
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Elieu_naisasnce" class="inline">
+                                <input id='Elieu_naisasnce' type='checkbox' name="Elieu_naisasnce" form="doE">Lieu naissance
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="EStatut" class="inline">
+                                <input id='EStatut' type='checkbox' name="EStatut" form="doE">Statut
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="EVille" class="inline">
+                                <input id='EVille' type='checkbox' name="EVille" form="doE">Ville
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="ETel" class="inline">
+                                <input id='ETel' type='checkbox' name="ETel" form="doE">Téléphone
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="EGroupe" class="inline">
+                                <input id='EGroupe' type='checkbox' name="EGroupe" form="doE">Groupe
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="ENiveau" class="inline">
+                                <input id='ENiveau' type='checkbox' name="ENiveau" form="doE">Niveau
+                            </label>
+                        </div>
+                        <div class="inline">
+                            <button type="submit" class="pure-button pure-button-primary" form="doE">valider</button>
+                            <button type="button" id="cancel_export_Excel" class="pure-button pure-button-primary">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
     <form class="hidden" method="post" action="/eleves/doE" id="doE">
         {{csrf_field()}}
+        <input type="hidden" value="{{$id}}" name="niv" form="doE">
     </form>
     <form class="hidden" method="post" action="/eleves/doP" id="doP">
         {{csrf_field()}}
+        <input type="hidden" value="{{$id}}" name="niv" form="doP">
     </form>
 
          @endsection
