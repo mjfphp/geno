@@ -5,10 +5,17 @@
   Gestion des Eleves du Niveau {{ $niveau->abbreviation }}
 @endsection
 
-@section('js-child')
-  <script  src="{{ URL::asset('js/sufel.js') }}"></script>
+@section('css-child')
+    <link rel="stylesheet" href="{{ URL::asset('css/export/export.css') }}">
 @endsection
 
+@section('js-child')
+  <script  src="{{ URL::asset('js/sufel.js') }}"></script>
+  <script src="{{ URL::asset('js/import_export/import.js')}}"></script>
+  <script src="{{ URL::asset('js/import_export/export.js') }}"></script>
+@endsection
+
+<<<<<<< HEAD
           @section('buttons1')
             <button class="btnstyle" type="button" id="addel" name="addel">Ajouter Un Eleve</button>
             @if ($errors->any())
@@ -21,6 +28,15 @@
                             </div>
             @endif
             <div id="addeleve" class="modal">
+=======
+@section('buttons1')
+    <button class="btnstyle" type="button" id="addel" name="addel">Ajouter Un Eleve</button>
+    <button type="button" id ="import_btn" class="btnstyle"> Importer</button>
+    <button type="submit" id ="exprtE" name="exprtE" form="doE" class="btnstyle">Exporter Excel</button>
+    <button type="button" id ="exprtP" name="exprtP" form="doPdf" class="btnstyle">Exporter Pdf</button>
+
+<div id="addeleve" class="modal">
+>>>>>>> d4f6423fa9ac85a937be255f8cf36b3d780cef73
                   <div class="modal-content">
                      <div class="modal-header">
                        <div id="nav-icon1" class="open">
@@ -34,7 +50,7 @@
          {{Form::open(['class' => 'pure-form pure-form-stacked','action' => 'AelevesC@store', 'method' => 'post']) }}
                                 {{csrf_field()}}
 
-                                <label for="apoge">Apogé</label>
+                         <label for="apoge">Apogé</label>
                                 <input id="apoge" type="text" name="apoge" placeholder="Apogé" value="{{ old('apoge') }}">
 
                                 <label for="cin">CNE</label>
@@ -88,10 +104,9 @@
                        </div>
                       </div>
                   </div>
-          @endsection
+@endsection
 
-
-                @section('fil_tab')
+@section('fil_tab')
                   <h4 class="h4">Détails des éléves :</h4>
                         <table class="table" id="table1">
                             <thead>
@@ -236,4 +251,95 @@
                              </div>
 
                       </div>
-                @endsection
+                    <div id="import" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="nav-icon1" class="open" onclick="cancel_import()">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <h4>Importer liste des élèves</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="pure-form pure-form-stacked" method="post" id="up" enctype="multipart/form-data">
+                        {{csrf_field()}}
+                        <input id='fileid' type='file' name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onchange="resetUp()">
+                        <div id="up_result"></div>
+                        <div class="inline">
+                            <button type="button" class="pure-button pure-button-primary" onclick="up('/eleves/up')">valider</button>
+                            <button type="button" id="cancel_upload" class="cancel_upload pure-button pure-button-primary">Annuler</button>
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+        </div>
+
+        <div id="export_pdf" class="modal">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div id="nav-icon1" class="open" onclick="cancel_export()">
+                        <span></span>
+                        <span></span>
+                    </div>
+                    <h4>Les champs à exporter</h4>
+                </div>
+                <div class="modal-body">
+                    <form class="form-group" method="post" id="up" enctype="multipart/form-data">
+                        {{csrf_field()}}
+                        <div class="checkbox">
+                            <label for="CIN" class="inline">
+                                <input id='CIN' type='checkbox' name="CIN" form="doP">CIN</label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Date_naissance" class="inline">
+                                <input id='Date_naissance' type='checkbox' name="Date_naissance" form="doP">Date naissance
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="lieu_naisasnce" class="inline">
+                                <input id='lieu_naisasnce' type='checkbox' name="lieu_naisasnce" form="doP">Lieu naissance
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Statut" class="inline">
+                                <input id='Statut' type='checkbox' name="Statut" form="doP">Statut
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Ville" class="inline">
+                                <input id='Ville' type='checkbox' name="Ville" form="doP">Ville
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Tel" class="inline">
+                                <input id='Tel' type='checkbox' name="Tel" form="doP">Téléphone
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Groupe" class="inline">
+                                <input id='Groupe' type='checkbox' name="Groupe" form="doP">Groupe
+                            </label>
+                        </div>
+                        <div class="checkbox">
+                            <label for="Niveau" class="inline">
+                                <input id='Niveau' type='checkbox' name="Niveau" form="doP">Niveau
+                            </label>
+                        </div>
+                        <div class="inline">
+                            <button type="submit" class="pure-button pure-button-primary" form="doP">valider</button>
+                            <button type="button" id="cancel_export" class="pure-button pure-button-primary">Annuler</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    <form class="hidden" method="post" action="/eleves/doE" id="doE">
+        {{csrf_field()}}
+    </form>
+    <form class="hidden" method="post" action="/eleves/doP" id="doP">
+        {{csrf_field()}}
+    </form>
+
+        @endsection

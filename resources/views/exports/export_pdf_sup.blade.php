@@ -4,8 +4,12 @@
         <link rel="stylesheet" href="css/export/pdf.css">
     </head>
 <body>
+    <div class="header">
+        <img src="images/ensa.png">
+        <h1>Liste des profs</h1>
+    </div>
     <div class="tab">
-     <table class="table" id="table">
+     <table class="table " id="table">
         <thead class="active">
             <tr>
                 <th class="text-center">Nom</th>

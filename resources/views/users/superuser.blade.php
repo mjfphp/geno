@@ -13,11 +13,13 @@
         <div class="searchBar">
           {{Form::open(['class' => 'form-inline','action' => 'Adminlog@home', 'method' => 'post']) }}
 
+
             <div class="form-group  @if($errors->has('search')) has-error @endif" >
-              <input type="search" class="form-control" name="search" placeholder="Search">
+              <input type="search" class="form-control" name="search" placeholder="Search" value="{{old('search')}}">
             </div>
+
             <div class="form-group">
-              <select class="form-control" name="filter">
+              <select class="form-control" name="filter" value="{{old('filter')}}">
                   <option value="0" selected>Filiere-Niveaux</option>
                   <option value="1">Niveau-Modules</option>
                   <option value="2">Niveau-eleves</option>

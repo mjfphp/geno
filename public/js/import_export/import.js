@@ -5,7 +5,8 @@ $(document).ready(function(){
     $("#cancel_upload").click(function(){
         cancel_import();
     });
-    up = function(){
+    up = function(link){
+        if(link!='/eleves/up' && link!='/profs/up')  return 0;
         resetMsg();
         file=$("#fileid")[0].files[0];
         token=$("input[name=_token]").val();
@@ -16,7 +17,7 @@ $(document).ready(function(){
             return ;
         }
         $.ajax({
-            url: "/profs/up",
+            url: link,
             xhr: function() { // custom xhr (is the best)
                 var xhr = new XMLHttpRequest();
                 var size = file.size;
@@ -37,7 +38,6 @@ $(document).ready(function(){
             contentType: false,
             data: content,
             success: function(data) {
-//                console.log(data);
                 if(data["message"]===undefined){
                     $("#up_result").html(data);
                 }

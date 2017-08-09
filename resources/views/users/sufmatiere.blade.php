@@ -33,8 +33,9 @@
                       {{Form::open(['class' => 'pure-form pure-form-stacked','action' => 'AmatieresC@store', 'method' => 'post']) }}
 
                            {{ csrf_field()}}
-                                <label for="intitule">Intitule</label>
-                                <input id="intitulef" type="text" name="intitule" value="{{ old('intitule') }}" placeholder="intitule">
+
+                                <label for="intitule" >Intitule</label>
+                                <input class= id="intitulef" type="text" name="intitule" value="{{ old('intitule') }}" placeholder="intitule">
 
                                 <label for="grp">Groupe</label>
                                 <select id="grp" name="grp" value="{{ old('grp') }}">
