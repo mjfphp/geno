@@ -122,6 +122,7 @@ class AprofsC extends Controller
             'prenom'=>'required',
             'refprof'=>'required',
             'email' => 'required|exists:users|email',
+            'specialite'=>"required|in:".implode(',',$this->spe),
             'adress'=>'max:255|nullable',
             'ville'=>'max:30|nullable',
             'num'=>'max:20|min:10|nullable'
