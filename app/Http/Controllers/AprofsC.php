@@ -16,13 +16,37 @@ use PDF;
 
 class AprofsC extends Controller
 {
+    private $spe=array(
+            '0'=>"Informatique",
+            '1'=>"Bases de Données",
+            '2'=>"Réseaux",
+            '3'=>"Télécoms",
+            '4'=>"Mathématiques",
+            '5'=>"Mathématiques Appliquées",
+            '6'=>"Logistique",
+            '7'=>"Indistrielle",
+            '8'=>"Physique",
+            '9'=>"Physique de la matière et du rayonnement",
+            '10'=>"Signal",
+            '11'=>"Automatique",
+            '12'=>"Automatismes",
+            '13'=>"Electronique",
+            '14'=>"Construction mécanique",
+            '15'=>"mécanique",
+            '16'=>"Chimie",
+            '17'=>"Qualité et Production",
+            '18'=>"RH",
+            '19'=>"Economie et Gestion",
+            '20'=>"Langue",
 
+        );
     public function index()
     {
         $profs=User::all();
         $depts = Departement::all();
         return view("users.superuser_prof")
             ->with('profs',$profs)
+            ->with('spes',$this->spe)
             ->with('depts',$depts);
     }
 
@@ -40,6 +64,7 @@ class AprofsC extends Controller
             'refprof'=>'required',
             'email' => 'required|unique:users|email',
             'adress'=>'max:255|nullable',
+            'specialite'=>"required|in:".implode(',',$this->spe),
             'ville'=>'max:30|nullable|alpha',
             'num'=>'numeric|min:10|nullable'
 

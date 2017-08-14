@@ -62,7 +62,11 @@
                               <input id="grade" type="text" name="grade" placeholder="Grade" value="{{ old('grade') }}">
 
                               <label for="specialite">Specialite</label>
-                              <input id="specialite" type="text" name="specialite" placeholder="Specialite" value="{{ old('specialite') }}">
+                                <select id="specialite" name="specialite">
+                                    @foreach ($spes as $key=>$spe)
+                                    <option value="{{$spe}}">{{$spe}}</option>
+                                    @endforeach
+                                </select>
 
                               <label for="email">Email</label>
                               <input id="email" type="text" name="email" placeholder="Email" value="{{ old('email') }}">
@@ -207,7 +211,11 @@
                           <input id="grade" type="text" placeholder="Grade" name="grade" required/>
 
                           <label for="specialite">Specialite</label>
-                          <input id="specialite" type="text" placeholder="Specialite" name="specialite" required/>
+                          <select id="specialite" name="specialite">
+                            @foreach ($spes as $key=>$spe)
+                              <option value="{{$spe}}">{{$spe}}</option>
+                            @endforeach
+                          </select>
 
                           <label for="email">Email</label>
                           <input id="email" type="email" placeholder="email" name="email" required/>
