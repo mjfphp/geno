@@ -132,7 +132,7 @@
         <tbody>
         @foreach($seances as $seance)
             <tr>
-             <td>{{$seance->matieres["intitule"]}}</td>
+             <td>{{$seance->matiere["intitule"]}}</td>
              <td>{{$seance["created_at"]}}</td>
              <td>
               <button type="submit" name="{{$seance["id"]}}" value="{{$seance["id"]}}" class="pure-button pure-button-primary">Choisir</button>

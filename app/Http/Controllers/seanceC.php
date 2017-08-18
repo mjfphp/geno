@@ -28,7 +28,7 @@ class seanceC extends Controller
         if($request->all()){
             $id=key($request->all());
             $Tempseance=Seance::find($id);
-            $matiere=$Tempseance->matieres;
+            $matiere=$Tempseance->matiere;
             $id_seance=$Tempseance["id"];
             $eleves=Absence::where('id_seance',$id_seance)->get();
         }        

@@ -13,7 +13,7 @@ class Seance extends Model
     {
         return $this->belongsTo('App\User');
     }
-    public function matieres()
+    public function matiere()
     {
         return $this->hasOne('App\Matiere','id','id');
     }
