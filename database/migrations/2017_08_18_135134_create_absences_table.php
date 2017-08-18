@@ -17,7 +17,7 @@ class CreateAbsencesTable extends Migration
             $table->increments('id');
             $table->integer('id_eleve');
             $table->integer('id_seance');
-            $table->boolean('statut')->comment('1 si present, 0 sinon');
+            $table->integer('statut')->comment('1 si present, 0 sinon');
             $table->timestamps();
         });
     }

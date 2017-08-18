@@ -58,7 +58,16 @@ class seanceC extends Controller
         $seance->id_prof=$this->id;
         $seance->id_matiere=$request->matiere;
         $seance->save();
-        
+        $matiere=Matiere::find($request->matiere);
+        $eleves=$matiere->module->niveau->eleves;
+        foreach($eleves as $eleve){
+            $Abs=new Absence;
+            $Abs->id_eleve=$eleve->id;
+            $Abs->id_seance=$seance["id"];
+            $Abs->statut=-1;
+            $Abs->save();
+        }
+//        dd($id_seance);
         /**
         On cherche les eleves qui etudient la matiere dont l'id est $request->matiere,
             on les ajoute a la table absence avec la valeur null pour la colonne statut
