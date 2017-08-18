@@ -58,6 +58,12 @@ Route::get('/prof',function(){
   return view("users.prof");
 });
 
+Route::get('/seances',"seanceC@index");
+Route::post('/seances',"seanceC@index");
+Route::post('/seances/add',"seanceC@add");
+Route::post('/seances/set',"seanceC@set");
+Route::post('/seances/sshow',"seanceC@index");
+
 Route::get('/tss',function(){
   $dept = App\Departement::all();
   return dd($dept[1]->chef);

@@ -1,0 +1,11 @@
+.table{
+  box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
+  z-index: 1;
+  text-align: center;
+}
+tbody tr:nth-child(odd){
+  background-color: #f2e5e5;
+}
+table#absences input[type=text]{
+    width: 100%;
+}

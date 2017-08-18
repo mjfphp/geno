@@ -1,0 +1,8 @@
+ajouter seance, le prof choisis la matiere pour laquelle il veut faire l'absence
+une liste des elves de cette matiere s'affiche avec l'apogee de l'eleve, nom complet, son image, nombre d'absence, commentaire a saisir, statut (A pour absent ou P pr present, un boutton radion)
+
+nom de la table: seances
+id id_prof id_matiere
+
+nom de la table absences
+id id_eleve id_seance statut( absent ou present)
