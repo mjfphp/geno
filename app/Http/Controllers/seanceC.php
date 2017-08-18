@@ -7,6 +7,7 @@ use App\Niveau;
 use App\matiere;
 use App\Seance;
 use App\Absence;
+use App\Eleve;
 use App\User;
 use Illuminate\Http\Request;
 use Validator;
@@ -39,7 +40,11 @@ class seanceC extends Controller
     }
     
     public function add(request $request){
+
 //        $Rules=["matiere"=>"required|unique:seances"];
+        $niveaux=Niveau::all();
+//        dd($request->all());
+
         $Rules=["matiere"=>"required"];
         $msg=["unique"=>"La matiere existe déjà!"];
         $validator=Validator::make($request->all(),$Rules);

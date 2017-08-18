@@ -11,7 +11,7 @@ class Seance extends Model
 
     public function prof()
     {
-        return $this->hasMany('App\User','id','id_prof');
+        return $this->belongsTo('App\User','id','id_prof');
     }
     public function matieres()
     {
