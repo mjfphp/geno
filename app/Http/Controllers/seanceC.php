@@ -42,7 +42,7 @@ class seanceC extends Controller
     public function add(request $request){
 
 //        $Rules=["matiere"=>"required|unique:seances"];
-        $niveaux=Niveau::all();
+  //      $niveaux=Niveau::all();
 //        dd($request->all());
 
         $Rules=["matiere"=>"required"];
@@ -57,7 +57,7 @@ class seanceC extends Controller
         $seance=new Seance;
         $seance->id_prof=$this->id;
         $seance->id_matiere=$request->matiere;
-        //seance->save();
+        $seance->save();
         
         /**
         On cherche les eleves qui etudient la matiere dont l'id est $request->matiere,
