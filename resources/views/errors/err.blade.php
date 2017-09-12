@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    404
+    ERROR
 @stop
 
 @section('header_title')
