@@ -32,5 +32,6 @@
     <script src="{{ URL::asset('js/bootstrap-select.min.js') }}"  ></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
     @yield('js')
+    <script src="{{ URL::asset('js/global.js') }}"></script>
   </body>
 </html>

@@ -40,7 +40,7 @@
      <div class="tables">
        <div class="t">
          <div class="buttons1">
-            <button class="btnstyle" type="button" id="addniv" name="addniv">Ajouter Un Niveau</button>
+            <button class="btnstyle" type="button" id="addniv" name="addniv" data-info="/niveaux/">Ajouter Un Niveau</button>
             @if ($errors->any())
                             <div class="alert alert-danger">
                                 <ul>
@@ -50,42 +50,13 @@
                                 </ul>
                             </div>
             @endif
-            <div id="addniveau" class="modal">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                       <div id="nav-icon1" class="open">
-                       <span></span>
-                       <span></span>
-                       </div>
-                          <h4>Confirmation</h4>
-                     </div>
-                     <div class="modal-body">
-                    {{Form::open(['class' => 'pure-form pure-form-stacked','action' => 'AniveauxC@store', 'method' => 'post']) }}
-                                <label for="abbreviation">Abréviation</label>
-                                <input id="abbreviation" type="text" name="abbreviation" placeholder="intitule">
-
-                                <label for="nbg">Nombre de Groupe</label>
-                                <input id="nbg" type="number" name="nbg" placeholder="Nombre de Groupe" min="00">
-
-                                <!-- Hna dir code php li kayjib id o i7ato f blasst id -->
-                                <input id="filiere_id" class="hidden" name="filiere_id" value="{{$filiere->id}}">
-
-                                <div class="inline">
-                                  <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
-                                  <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
-                                </div>
-                          {{ Form::close() }}
-                       </div>
-                      </div>
-                  </div>
                 </div>
 
                 <div class="fil_tab">
                   <h4 class="h4">Détails des Niveaux :</h4>
-                        <table class="table" id="table">
+                        <table class="table" id="table" data-id="{{$filiere->id}}">
                             <thead>
                                 <tr>
-                                    <th class=" text-center">Id</th>
                                     <th class="text-center">Abréviation</th>
                                     <th class="text-center">Nombre de groupe</th>
                                     <th class="text-center">Filiere</th>
@@ -96,7 +67,6 @@
                             @if($filiere->niveaux)
                                 @foreach($filiere->niveaux as $item)
                                   <tr>
-                                    <td>{{$item->id}}</td>
                                     <td>{{$item->abbreviation}}</td>
                                     <td>{{$item->nbg}}</td>
                                     <td>
@@ -104,10 +74,10 @@
 
                                     </td>
                                     <td>
-                                      <button class="edit-modal edit btn">
+                                      <button class="edit-modal edit btn" data-id={{$item->id}} data-info="/niveaux/">
                                           <span class="glyphicon glyphicon-edit"></span> Edit
                                       </button>
-                                      <button class="delete-modal delete btn">
+                                      <button class="delete-modal delete btn" data-id={{$item->id}} data-info="/niveaux/">
                                           <span class="glyphicon glyphicon-trash"></span> Delete
                                       </button>
                                     </td>
@@ -116,7 +86,7 @@
                             @endif
                             </tbody>
                          </table>
-                  <div id="editNiv" class="modal">
+                  <div id="editS" class="modal">
                         <div class="modal-content">
                            <div class="modal-header">
                              <div id="nav-icon1" class="open">
@@ -129,16 +99,13 @@
                            <form class="pure-form pure-form-stacked" method="post">
 
                              {{ csrf_field()}}
-                             <input type="hidden" name="_method" value="put">
+                             <input type="hidden" name="_method" value="put" class="method">
 
                              <label for="abbreviation">Abréviation</label>
-                             <input id="abbreviation" type="text" name="abbreviation" placeholder="intitule">
+                             <input id="abbreviation" type="text" name="abbreviation" placeholder="abbreviation">
 
                              <label for="nbg">Nombre de Groupe</label>
                              <input id="nbg" type="number" name="nbg" placeholder="Nombre de Groupe" min="00">
-
-                             <!-- Hna dir code php li kayjib id o i7ato f blasst id -->
-                             <input id="filiere_id" name="filiere_id" value="{{$filiere->id}}" class="hidden">
 
                          <div class="inline">
                            <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
@@ -149,29 +116,7 @@
                            </div>
 
                     </div>
-                    <div id="deleteNiv" class="modal">
-                          <div class="modal-content">
-                             <div class="modal-header">
-                               <div id="nav-icon1" class="open">
-                               <span></span>
-                               <span></span>
-                               </div>
-                                  <h4>Confirmation</h4>
-                             </div>
-                           <div class="modal-body">
-                             <form class="pure-form pure-form-stacked" method="post">
-                               {{ csrf_field()}}
-                               <input name="_method" type="hidden" value="DELETE">
-                               <h4>Vous Voulez vraiment supprimer ce Niveau ?</h4>
-                           <div class="inline">
-                             <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
-                             <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
-                           </div>
-                         </form>
-                             </div>
-                             </div>
-
-                      </div>
+                    @include('partial.deleteS')
                 </div>
               </div>
               </div>

@@ -14,88 +14,19 @@
   <script src="{{ URL::asset('js/import_export/import.js')}}"></script>
   <script src="{{ URL::asset('js/import_export/export.js') }}"></script>
 @endsection
- 
+
 @section('buttons1')
     <button class="btnstyle" type="button" id="addel" name="addel">Ajouter Un Eleve</button>
     <button type="button" id ="import_btn" class="btnstyle"> Importer</button>
     <button type="submit" id ="exprtE" name="exprtE" form="doEstop" class="btnstyle">Exporter Excel</button>
     <button type="button" id ="exprtP" name="exprtP" form="doPdf" class="btnstyle">Exporter Pdf</button>
-<div id="addeleve" class="modal">
-                  <div class="modal-content">
-                     <div class="modal-header">
-                       <div id="nav-icon1" class="open">
-                       <span></span>
-                       <span></span>
-                       </div>
-                          <h4>Confirmation</h4>
-                     </div>
-                     <div class="modal-body">
-
-         {{Form::open(['class' => 'pure-form pure-form-stacked','action' => 'AelevesC@store', 'method' => 'post']) }}
-                                {{csrf_field()}}
-
-                         <label for="apoge">Apogé</label>
-                                <input id="apoge" type="text" name="apoge" placeholder="Apogé" value="{{ old('apoge') }}">
-
-                                <label for="cin">CNE</label>
-                                <input id="cin" type="text" name="cne" placeholder="CNE" value="{{ old('cin') }}">
-
-                                <label for="cin">CIN</label>
-                                <input id="cin" type="text" name="cin" placeholder="CIN" value="{{ old('cne') }}">
-
-                                <label for="nom">Nom</label>
-                               <input id="nom" name="nom" type="text" placeholder="Nom" value="{{ old('nom') }}">
-
-                                <label for="prenom">Prenom</label>
-                                <input id="prenom" type="text" name="prenom" placeholder="Prenom" value="{{ old('prenom') }}">
-
-                                <label for="statut">Statut</label>
-                                <select id="statut" name="statut" value="{{ old('statut') }}">
-                                     <option value="Aj">Aj</option>
-                                     <option value="Tr">Tr</option>
-                                     <option value="Bd">Bd</option>
-                                </select>
-
-                                <label for="grp">Groupe</label>
-                                <select id="grp" name="grp" value="{{ old('grp') }}">
-                                @for($i=1;$i<$niveau->nbg+1;$i++)
-                                       <option value="{{$i}}">{{$i}}</option>
-                                @endfor
-                               </select>
-
-                                <label for="email">Email</label>
-                                <input id="email" type="text" name="email" placeholder="Email" value="{{ old('email') }}">
-
-                                <label for="date_naissance">Date De Naissance</label>
-                                <input id="date_naissance" type="date" name="date_naissance" placeholder="Date De Naissance" value="{{ old('date_naissance') }}">
-
-                                <label for="lieu_naissance">Lieu De Naissance</label>
-                                <input id="lieu_naissance" type="text" name="lieu_naissance" placeholder="Lieu De Naissance" value="{{ old('lieu_naissance') }}">
-
-                                <label for="ville">Ville</label>
-                                <input id="ville" type="text" name="ville" placeholder="Ville" value="{{ old('ville') }}">
-
-                                <input id="niveau_id" type="hidden" value="{{$niveau->id}}" name="niveau_id">
-
-
-                                <label for="num">Tél</label>
-                                <input id="num" type="number" name="num" placeholder="Tél" value="{{ old('num') }}">
-                                <div class="inline">
-                                  <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
-                                  <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
-                                </div>
-                          {{ Form::close() }}
-                       </div>
-                      </div>
-                  </div>
 @endsection
 
 @section('fil_tab')
                   <h4 class="h4">Détails des éléves :</h4>
-                        <table class="table" id="table1">
+                        <table class="table" id="table1" data-id="{{$niveau->id}}">
                             <thead>
                                 <tr>
-                                    <th class="hidden text-center">Id</th>
                                     <th class="text-center">Appogé</th>
                                     <th class="text-center">CNE</th>
                                     <th class="text-center">CIN</th>
@@ -115,7 +46,6 @@
                             @if($niveau->eleves)
                             @foreach($niveau->eleves as $item)
                                 <tr class="item{{$item->id}}">
-                                    <td class="hidden">{{$item->id}}</td>
                                     <td>{{$item->apoge}}</td>
                                     <td>{{$item->cne}}</td>
                                     <td>{{$item->cin}}</td>
@@ -129,10 +59,10 @@
                                     <td>{{$item->ville}}</td>
                                     <td>{{$item->num}}</td>
                                     <td>
-                                      <button class="edit-modal btn">
+                                      <button class="edit-modal edit btn" data-id={{$item->id}} data-info="/eleves/">
                                           <span class="glyphicon glyphicon-edit"></span> Edit
                                       </button>
-                                      <button class="delete-modal btn">
+                                      <button class="delete-modal delete btn" data-id="{{$item->id}}" data-info="/eleves/">
                                           <span class="glyphicon glyphicon-trash"></span> Delete
                                       </button>
                                     </td>
@@ -141,7 +71,7 @@
                             @endif
                             </tbody>
                          </table>
-                  <div id="editEl" class="modal">
+                  <div id="editS" class="modal">
                         <div class="modal-content">
                            <div class="modal-header">
                              <div id="nav-icon1" class="open">
@@ -155,7 +85,7 @@
 
                              {{csrf_field()}}
 
-                             <input type="hidden" name="_method" value="put">
+                             <input type="hidden" name="_method" value="put" class="method">
 
                              <label for="apoge">Apogé</label>
                              <input id="apoge" type="text" name="apoge" placeholder="Apogé">
@@ -208,56 +138,31 @@
                          </div>
                         </div>
                 </div>
-                    <div id="deleteEl" class="modal">
+                    @include('partial.deleteS')
+                     <div id="import" class="modal">
                           <div class="modal-content">
-                             <div class="modal-header">
-                               <div id="nav-icon1" class="open">
-                               <span></span>
-                               <span></span>
-                               </div>
-                                  <h4>Confirmation</h4>
-                             </div>
-                           <div class="modal-body">
-                             <form class="pure-form pure-form-stacked" method="post">
+                              <div class="modal-header">
+                                  <div id="nav-icon1" class="open" onclick="cancel_import()">
+                                      <span></span>
+                                      <span></span>
+                                  </div>
+                                  <h4>Importer liste des élèves</h4>
+                              </div>
+                              <div class="modal-body">
+                                  <form class="pure-form pure-form-stacked" method="post" id="up" enctype="multipart/form-data">
+                                      {{csrf_field()}}
+                                      <input id='fileid' type='file' name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onchange="resetUp()">
+                                      <div id="up_result"></div>
+                                      <div class="inline">
+                                          <button type="button" class="pure-button pure-button-primary" onclick="up('/eleves/up')">valider</button>
+                                          <button type="button" id="cancel_upload" class="cancel_upload pure-button pure-button-primary">Annuler</button>
+                                      </div>
+                                  </form>
 
-                               {{csrf_field()}}
 
-                               <input type="hidden" name="_method" value="delete">
-
-                               <h4>Vous Voulez vraimenet supprimer cette module ?</h4>
-                           <div class="inline">
-                             <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
-                             <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
-                           </div>
-                         </form>
-                             </div>
-                             </div>
-
+                              </div>
+                          </div>
                       </div>
-                    <div id="import" class="modal">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <div id="nav-icon1" class="open" onclick="cancel_import()">
-                        <span></span>
-                        <span></span>
-                    </div>
-                    <h4>Importer liste des élèves</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="pure-form pure-form-stacked" method="post" id="up" enctype="multipart/form-data">
-                        {{csrf_field()}}
-                        <input id='fileid' type='file' name="file" accept="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel" onchange="resetUp()">
-                        <div id="up_result"></div>
-                        <div class="inline">
-                            <button type="button" class="pure-button pure-button-primary" onclick="up('/eleves/up')">valider</button>
-                            <button type="button" id="cancel_upload" class="cancel_upload pure-button pure-button-primary">Annuler</button>
-                        </div>
-                    </form>
-
-
-                </div>
-            </div>
-        </div>
 
         <div id="export_pdf" class="modal">
             <div class="modal-content">
