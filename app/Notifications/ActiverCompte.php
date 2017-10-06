@@ -27,11 +27,7 @@ class ActiverCompte extends Notification
 
     public function toMail($notifiable)
     {
-        return (new MailMessage)
-                    ->line('Salamo alikom vous pouvez activer votre compte sur la plateforme gestion des notes \n Votre mail est : '.$this->mail
-                    .' \n votre password  : '.$this->pass)
-                    ->action('Notification Action', url('/'))
-                    ->line('Thank you for using our application!');
+        return (new MailMessage)->view("mail.active",['mail' => $this->mail,"pass" => $this->pass]);
     }
 
 

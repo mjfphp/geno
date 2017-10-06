@@ -29,6 +29,7 @@ class CreateUsersTable extends Migration
                 $table->string('specialite');
                 $table->string('num');
                 $table->integer('departement_id')->unsigned()->nullable();
+                $table->boolean('isDeleted');
 
                 $table->foreign('departement_id')->references('id')->on('departements');
                 $table->rememberToken();

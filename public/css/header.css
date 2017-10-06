@@ -4,10 +4,7 @@
   margin: 0 auto;
   padding: 0 auto;
 }
-body{
-  min-width: 600px;
 
-}
 .header {
   display: inline-block;
   background-color: #0088ae;

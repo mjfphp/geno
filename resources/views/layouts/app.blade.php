@@ -10,6 +10,8 @@
     <link    href="{{ asset('css/header.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/bootstrap-select.min.css') }}"   rel="stylesheet">
     <link  href="{{ asset('css/bootstrap.min.css') }}"   rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     @yield('style')
   </head>
 
@@ -31,7 +33,13 @@
     <script src="{{ URL::asset('js/jquery-3.1.1.min.js') }}" ></script>
     <script src="{{ URL::asset('js/bootstrap-select.min.js') }}"  ></script>
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
     @yield('js')
+    <script type="text/javascript">
+    $(document).ready(function() {
+      $('.table').DataTable();
+    } );
+    </script>
     <script src="{{ URL::asset('js/global.js') }}"></script>
   </body>
 </html>

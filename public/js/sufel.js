@@ -1,12 +1,5 @@
 // the leftside bar click to scroll code
 $(document).ready(function(){
-  $('.tree_label').click(function(){
-    if($(this).prev().attr("checked")){
-      $(this).prev().removeAttr("checked");
-    }else{
-      $(this).prev().attr("checked","checked");
-    }
-  });
   // ADD eleve model
   $('#addel').on('click',function() {
           $('#editS').css("display","block");

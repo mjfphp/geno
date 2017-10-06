@@ -66,8 +66,7 @@ class AprofsC extends Controller
             'adress'=>'max:255|nullable',
             'specialite'=>"required|in:".implode(',',$this->spe),
             'ville'=>'max:30|nullable|alpha',
-            'num'=>'numeric|min:10|nullable'
-
+            'num'=>'numeric|min:10|nullable',
         ]);
 
 
@@ -90,6 +89,7 @@ class AprofsC extends Controller
         $prof->grade = $request->input('grade');
         $prof->prenom= $request->input('prenom');
         $prof->password=Hash::make($p=str_random(8));
+        $prof->isDeleted=0;
         $prof->save();
 
         $prof=User::where('email',$email)->first();

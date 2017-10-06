@@ -124,3 +124,7 @@ Route::get('/newpass',function(){
 Route::get("/account",function(){
     return view("users.account");
 });
+
+Route::get('/mail',function(){
+  return view("mail.active");
+});

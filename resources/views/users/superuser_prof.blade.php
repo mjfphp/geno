@@ -1,12 +1,9 @@
     @extends('layouts.app')
 
 @section('style')
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
   <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   <link href="css/sup.css" rel="stylesheet" type="text/css">
   <link href="css/modal.css" rel="stylesheet" type="text/css">
-  <link href="css/export/export.css" rel="stylesheet" type="text/css">
   <link href="css/export/export.css" rel="stylesheet" type="text/css">
 @endsection
 
@@ -32,79 +29,19 @@
                   </div>
         @endif
         <div class="buttons1">
-          <button type="button" id="addp" name="addp" class="btnstyle">Ajouter Un Prof</button>
+          <button type="button" id="addp" name="addp" class="btnstyle" data-info="/profs/">Ajouter Un Prof</button>
           <button type="button" id ="import_btn" class="btnstyle"> Importer</button>
           <button type="submit" id ="exprtE" name="exprtE" class="btnstyle">Exporter Excel</button>
           <button type="button" id ="exprtP" name="exprtP" form="doPdf" class="btnstyle">Exporter Pdf</button>
-          <div id="prof" class="modal">
-                <div class="modal-content">
-                   <div class="modal-header">
-                     <div id="nav-icon1" class="open">
-                     <span></span>
-                     <span></span>
-                     </div>
-                        <h4>Confirmation</h4>
-                   </div>
-                   <div class="modal-body">
-                     <div class="pure-form pure-form-stacked">
-                           {{Form::open(['action' => 'AprofsC@store', 'method' => 'post']) }}
-                                {{csrf_field()}}
-                               <label for="name">Nom</label>
-                              <input id="name" name="name" type="text" placeholder="Nom" value="{{ old('name') }}">
 
-                              <label for="refprof">Refprof</label>
-                              <input id="refprof" name="refprof" type="text" placeholder="Refprof" value="{{ old('refprof') }}">
-
-                              <label for="prenom">Prenom</label>
-                              <input id="prenom" type="text" name="prenom" placeholder="Prenom" value="{{ old('prenom') }}">
-
-                              <label for="grade">Grade</label>
-                              <input id="grade" type="text" name="grade" placeholder="Grade" value="{{ old('grade') }}">
-
-                              <label for="specialite">Specialite</label>
-                                <select id="specialite" name="specialite">
-                                    @foreach ($spes as $key=>$spe)
-                                    <option value="{{$spe}}">{{$spe}}</option>
-                                    @endforeach
-                                </select>
-
-                              <label for="email">Email</label>
-                              <input id="email" type="text" name="email" placeholder="Email" value="{{ old('email') }}">
-
-                              <label for="adress">Adresse</label>
-                              <input id="adress" type="text" name="adress" placeholder="Adresse" value="{{ old('adress') }}">
-
-                              <label for="ville">Ville</label>
-                              <input id="ville" type="text" name="ville" placeholder="Ville" value="{{ old('ville') }}">
-
-                              <label for="num">Tél</label>
-                              <input id="num" type="text" name="num" placeholder="Tél" value="{{ old('num') }}">
-
-                              <label for="departement_id">Département</label>
-                              <select id="departement_id" name="departement_id">
-                                 @foreach ($depts as $dept)
-                                         <option value="{{$dept->id}}">{{$dept->intitule}}</option>
-                                 @endforeach
-                              </select>
-
-
-
-                              <div class="inline">
-                                <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
-                                <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
-                              </div>
-                              {{ Form::close() }}
-                        </div>
-                     </div>
-                    </div>
-                </div>
         </div>
         <div class="tab">
           <h4>Liste des profs :</h4>
-                <table class="table" id="table">
+          <div class="container ">
+          <div class="table-responsive text-center">
+                <table class="table table-bordered table-striped display" id="table">
                     <thead>
                         <tr>
-                            <th class="hidden text-center">Id</th>
                             <th class="text-center">Ref prof</th>
                             <th class="text-center">Nom</th>
                             <th class="text-center">Prenom</th>
@@ -121,7 +58,6 @@
                     <tbody>
                     @foreach($profs as $item)
                         <tr class="item{{$item->id}}">
-                            <td class="hidden">{{$item->id}}</td>
                             <td>{{$item->refprof}}</td>
                             <td>{{$item->name}}</td>
                             <td>{{$item->prenom}}</td>
@@ -139,10 +75,10 @@
                               @endif
                             </td>
                             <td>
-                              <button class="edit-modal btn">
+                              <button class="edit-modal btn" data-id="{{$item->id}}" data-info="/profs/">
                                   <span class="glyphicon glyphicon-edit"></span> Edit
                               </button>
-                              <button class="delete-modal btn">
+                              <button class="delete-modal delete btn" data-id="{{$item->id}}" data-info="/profs/">
                                   <span class="glyphicon glyphicon-trash"></span> Delete
                               </button>
                             </td>
@@ -150,39 +86,10 @@
                     @endforeach
                     </tbody>
                  </table>
-
-                 <div id="deleteModal" class="modal">
-                       <div class="modal-content">
-                          <div class="modal-header">
-                            <div id="nav-icon1" class="open">
-                            <span></span>
-                            <span></span>
-                            </div>
-                               <h4>Confirmation</h4>
-                          </div>
-                        <div class="modal-body">
-
-                    <form class="pure-form pure-form-stacked" method="post">
-
-                        {{ csrf_field() }}
-                        <input type="hidden" name="_method" value="delete">
-
-                        <h4>Vous Voulez vraiment supprimer ce prof ?</h4>
-
-
-                        <div class="inline">
-                          <button type="submit" class="confirm confirm2 pure-button pure-button-primary">Confirmer</button>
-
-                          <button type="button" class="annuler annuler2 pure-button pure-button-primary">Annuler</button>
-
-                        </div>
-
-
-                      </form>
-                        </div>
-                         </div>
-                   </div>
-                   <div id="editModal" class="modal">
+               </div>
+             </div>
+                 @include('partial.deleteS')
+                   <div id="editS" class="modal">
                          <div class="modal-content">
                             <div class="modal-header">
                               <div id="nav-icon1" class="open">
@@ -196,7 +103,7 @@
                       <form class="pure-form pure-form-stacked" method="post">
 
                           {{ csrf_field() }}
-                          <input type="hidden" name="_method" value="put">
+                          <input type="hidden" name="_method" value="put" class="method">
 
                           <label for="refprof">refprof</label>
                           <input id="refprof" type="text" placeholder="id" name="refprof" required/>

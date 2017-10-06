@@ -27,30 +27,6 @@ body{
   text-align: center;
 }
 
-.table thead td{
-  background-color: #337ab7;
-  padding: 7px !important;
-  color: white;
-  margin-left: 5px !important;
-  width: 50% !important;
-}
-
-tbody tr:nth-child(odd){
-  background-color: #f2e5e5;
-}
-
-.table tr{
-  font-family: "Rubik",sans-serif;
-}
-
-.table tr:hover td{
-  background-color: #c2c2c2 !important;
-}
-
-tr:hover,tr:nth-child(odd):hover,tr:focus,tr:visited{
-  background-color:#212121;
-  color: white;
-}
 /* Button edit et delete du tableau */
 .edit-modal{
   background-color: #0088ae;
