@@ -20,7 +20,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" style="display:@if ($errors->any()) block @endif">
     <div class="info-matiere">
         <div class="row">
             <div class="col col-md-3 col-xs-6">

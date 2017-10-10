@@ -19,7 +19,7 @@
 @section('content')
 
 
-  <div class="wrapper">
+  <div class="wrapper" style="display:@if ($errors->any()) block @endif">
     <div class="left-side">
       <ul class="tree">
              <li>
@@ -101,11 +101,19 @@
                              {{ csrf_field()}}
                              <input type="hidden" name="_method" value="put" class="method">
 
+                               <div class="form-group">
                              <label for="abbreviation">Abréviation</label>
-                             <input id="abbreviation" type="text" name="abbreviation" placeholder="abbreviation">
+                                <div class="col-md-8 @if($errors->has('abbreviation')) has-error @endif">
+                                 <input id="abbreviation" type="text" name="abbreviation" placeholder="abbreviation">
+                                </div>
+                               </div>
 
+                               <div class="form-group">
                              <label for="nbg">Nombre de Groupe</label>
-                             <input id="nbg" type="number" name="nbg" placeholder="Nombre de Groupe" min="00">
+                                <div class="col-md-8 @if($errors->has('nbg')) has-error @endif">
+                                   <input id="nbg" type="number" name="nbg" placeholder="Nombre de Groupe" min="00">
+                                </div>
+                               </div>
 
                          <div class="inline">
                            <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>

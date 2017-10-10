@@ -23,6 +23,7 @@
 @endsection
 
 @section('fil_tab')
+<div style="display:@if ($errors->any()) block @endif">
                   <h4 class="h4">Détails des éléves :</h4>
                         <table class="table" id="table1" data-id="{{$niveau->id}}">
                             <thead>
@@ -87,20 +88,41 @@
 
                              <input type="hidden" name="_method" value="put" class="method">
 
+                               
+                               
+                               <div class="form-group">
                              <label for="apoge">Apogé</label>
-                             <input id="apoge" type="text" name="apoge" placeholder="Apogé">
-
+                                <div class="col-md-8 @if($errors->has('apoge')) has-error @endif">
+                                   <input id="apoge" type="text" name="apoge" placeholder="Apogé">
+                                </div>
+                               </div>
+                               class="col-md-8 @if($errors->has('refprof')) has-error @endif"                              
+                               <div class="form-group">
                              <label for="cne">CNE</label>
-                             <input id="cne" type="text" name="cne" placeholder="CNE">
-
+                                <div class="col-md-8 @if($errors->has('cne')) has-error @endif">
+                                    <input id="cne" type="text" name="cne" placeholder="CNE">
+                                </div>
+                               </div>
+                            <div class="form-group">
                              <label for="cin">CIN</label>
+                                <div class="col-md-8 @if($errors->has('cin')) has-error @endif">
                              <input id="cin" type="text" name="cin" placeholder="CIN">
-
+                                </div>
+                               </div>
+                               
+                               <div class="form-group">
                              <label for="nom">Nom</label>
-                            <input id="nom" name="nom" type="text" placeholder="Nom" >
+                            <div class="col-md-8 @if($errors->has('nom')) has-error @endif">
+                                <input id="nom" name="nom" type="text" placeholder="Nom" >
+                               </div>
+                               </div>
 
+                               <div class="form-group">
                              <label for="prenom">Prenom</label>
-                             <input id="prenom" type="text" name="prenom" placeholder="Prenom" >
+                             <div class="col-md-8 @if($errors->has('prenom')) has-error @endif">
+                                 <input id="prenom" type="text" name="prenom" placeholder="Prenom" >
+                               </div>
+                               </div>
 
                              <label for="statut">Statue</label>
                               <select id="statut" name="statut" value="{{ old('statut') }}">
@@ -115,20 +137,41 @@
                                                <option value="{{$i}}">{{$i}}</option>
                                       @endfor
                              </select>
+                             
+                                 <div class="form-group">
                              <label for="email">Email</label>
-                             <input id="email" type="text" name="email" placeholder="Email" >
+                             <div class="col-md-8 @if($errors->has('email')) has-error @endif">
+                                 <input id="email" type="text" name="email" placeholder="Email" >
+                            </div>
+                                 </div>
 
+                                 <div class="form-group">
                              <label for="date_naissance">Date De Naissance</label>
-                             <input id="date_naissance" type="date" name="date_naissance" placeholder="Date De Naissance" >
+                             <div class="col-md-8 @if($errors->has('date_naissance')) has-error @endif">
+                                 <input id="date_naissance" type="date" name="date_naissance" placeholder="Date De Naissance" >
+                                 </div>
+                                 </div>
 
+                                 <div class="form-group">
                              <label for="lieu_naissance">Lieu De Naissance</label>
-                             <input id="lieu_naissance" type="text" name="lieu_naissance" placeholder="Lieu De Naissance">
+                             <div class="col-md-8 @if($errors->has('lieu_naissance')) has-error @endif">
+                                 <input id="lieu_naissance" type="text" name="lieu_naissance" placeholder="Lieu De Naissance">
+                            </div>
+                                 </div>
 
+                                 <div class="form-group">
                              <label for="ville">Ville</label>
-                             <input id="ville" type="text" name="ville" placeholder="Ville" >
+                             <div class="col-md-8 @if($errors->has('ville')) has-error @endif">
+                                 <input id="ville" type="text" name="ville" placeholder="Ville" >
+                                 </div>
+                                 </div>
 
+                                 <div class="form-group">
                              <label for="num">Tél</label>
-                             <input id="num" type="number" name="num" placeholder="Tél" >
+                             <div class="col-md-8 @if($errors->has('num')) has-error @endif">
+                                 <input id="num" type="number" name="num" placeholder="Tél" >
+                                 </div>
+                                 </div>
 
                          <div class="inline">
                            <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
@@ -300,6 +343,7 @@
                     </form>
                 </div>
             </div>
+            </div>
     <form class="hidden" method="post" action="/eleves/doE" id="doE">
         {{csrf_field()}}
         <input type="hidden" value="{{$id}}" name="niv" form="doE">
@@ -309,4 +353,5 @@
         <input type="hidden" value="{{$id}}" name="niv" form="doP">
     </form>
 
+ </div>
          @endsection

@@ -21,7 +21,7 @@
 @endsection
 
 @section('content')
-<div class="container">
+<div class="container" style="display:@if ($errors->any()) block @endif">
     <div class="info-matiere">
         <div class="row">
             <div class="col col-md-3 col-xs-6">
@@ -49,11 +49,18 @@
         </div>
         <div class="modal-body">
         <form class="pure-form pure-form-stacked" action="" method="POST">{!! csrf_field() !!}
+            <div class="form-groupe">
          <label for="intitule">Nom de sous matiere</label>
+                <div class="col-md-8 @if($errors->has('intitule')) has-error @endif">
          <input id="intitule" name="intitule" type="text" placeholder="cc1" autofocus autocomplete="false">
-
+                </div>
+            </div>
+            <div>
          <label for="pourcentage">pourcentage</label>
-         <input id="pourcentage" type="number" min="0" max="100" name="pourcent">
+         <div class="col-md-8 @if($errors->has('pourcent')) has-error @endif">
+                <input id="pourcentage" type="number" min="0" max="100" name="pourcent">
+            </div>
+            </div>
 
          <div class="inline">
           <button type="submit" class="confirm pure-button pure-button-primary" onclick="event.preventDefault(),edit()">Confirmer</button>

@@ -21,7 +21,7 @@
 @endsection
 
 @section('content')
-<div id="parametrages" class="modal">
+<div id="parametrages" class="modal" style="display:@if ($errors->any()) block @endif">
     <div class="modal-content">
         <div class="modal-header">
          <div id="nav-icon1" class="open">
@@ -32,14 +32,27 @@
         </div>
         <div class="modal-body">
         <form class="pure-form pure-form-stacked" action="" method="POST">{!! csrf_field() !!}
+            
+            <div class="form-group">
          <label for="intitule">Nom de matiere</label>
+                <div class="col-md-8 @if($errors->has('intitule')) has-error @endif">
          <input id="intitule" name="intitule" type="text" placeholder="AP11" autocomplete="false">
+                </div>
+            </div>
 
+            <div class="form-group">
          <label for="avantRatt">pourcentage avant ratt</label>
-         <input id="avantRatt" type="number" min="0" max="100" name="avantRatt">
-
+                <div class="col-md-8 @if($errors->has('avantRatt')) has-error @endif">
+                <input id="avantRatt" type="number" min="0" max="100" name="avantRatt">
+                </div>
+            </div>
+            
+        <div class="form-group">
         <label for="apresRatt">pourcentage après ratt</label>
-         <input id="apresRatt" type="number" min="0" max="100" name="apresRatt">
+            <div class="col-md-8 @if($errors->has('apresRatt')) has-error @endif">
+            <input id="apresRatt" type="number" min="0" max="100" name="apresRatt">
+            </div>
+        </div>
 
          <div class="inline">
           <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
