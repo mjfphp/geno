@@ -9,9 +9,6 @@ $(document).ready(function(){
           $(".method").remove();
           $('#editS form').attr('action','/eleves');
   });
-  $('#addel .annuler,#addmodule #nav-icon1,#addmodule span').click(function(){
-          $('#addeleve').css("display","none");
-  });
   // Edit eleve
   $('.edit').on('click',function() {
           $('#editS').css("display","block");

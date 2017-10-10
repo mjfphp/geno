@@ -7,7 +7,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="shortcut icon"  href="{{ asset('/images/ensa.png') }}"/>
        <title>@section('title') ENSA @show</title>
-    <link    href="{{ asset('css/header.css') }}" rel="stylesheet">
+    <link  href="{{ asset('css/header.css') }}" rel="stylesheet">
     <link  href="{{ asset('css/bootstrap-select.min.css') }}"   rel="stylesheet">
     <link  href="{{ asset('css/bootstrap.min.css') }}"   rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="//cdn.datatables.net/1.10.16/css/jquery.dataTables.css">

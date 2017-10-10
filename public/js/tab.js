@@ -1,9 +1,9 @@
 $(document).ready(function(){
   // initialise the leftside and table container's hights and widthds
-  $('.left-side').height($(document).innerHeight()-70);
-  $('.tree').height($('.left-side').innerHeight()-50);
-  $('.tables').width($(document).innerWidth()-196);
-  $('.tables').height($(document).innerHeight()-56);
+  $('.left-side').height($(document).height()-70);
+  $('.tree').height($('.left-side').height()-50);
+  $('.tables').width($(document).width()-196);
+  $('.tables').height($(document).height()-56);
   sizeleft();
   sizetables();
   $('.tree_label').click(function(){
@@ -23,13 +23,13 @@ $(document).ready(function(){
 
 function sizeleft(){
   $(window).resize(function(){
-    $('.left-side,.tree').height($(window).innerHeight()-70);
-    $('.tree').height($('.left-side').innerHeight()-50);
+    $('.left-side,.tree').height($(document).height()-70);
+    $('.tree').height($('.left-side').height()-50);
   });
 }
 function sizetables(){
   $(window).resize(function(){
-    $('.tables').width($(window).innerWidth()-196);
-    $('.tables').height($(window).innerHeight()-56);
+    $('.tables').width($(document).width()-196);
+    $('.tables').height($(document).height()-56);
   });
 }

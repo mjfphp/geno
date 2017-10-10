@@ -1,7 +1,6 @@
     @extends('layouts.app')
 
 @section('style')
-  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   <link href="css/sup.css" rel="stylesheet" type="text/css">
   <link href="css/modal.css" rel="stylesheet" type="text/css">
   <link href="css/export/export.css" rel="stylesheet" type="text/css">
@@ -19,15 +18,6 @@
 @endsection
 @section('content')
     <div class="cont">
-       @if ($errors->any())
-                  <div class="alert alert-danger">
-                      <ul>
-                          @foreach ($errors->all() as $error)
-                              <li>{{ $error }}</li>
-                          @endforeach
-                      </ul>
-                  </div>
-        @endif
         <div class="buttons1">
           <button type="button" id="addp" name="addp" class="btnstyle" data-info="/profs/">Ajouter Un Prof</button>
           <button type="button" id ="import_btn" class="btnstyle"> Importer</button>
@@ -39,7 +29,7 @@
           <h4>Liste des profs :</h4>
           <div class="container ">
           <div class="table-responsive text-center">
-                <table class="table table-bordered table-striped display" id="table">
+                <table class="table" id="table">
                     <thead>
                         <tr>
                             <th class="text-center">Ref prof</th>
@@ -89,71 +79,138 @@
                </div>
              </div>
                  @include('partial.deleteS')
-                   <div id="editS" class="modal">
-                         <div class="modal-content">
-                            <div class="modal-header">
+                 <div id="editS" class="modal" style="display:@if ($errors->any()) block @endif">
+                    <div class="modal-dialog">
+                      <div class="modal-content">
+                        <div class="modal-header">
                               <div id="nav-icon1" class="open">
                               <span></span>
                               <span></span>
                               </div>
                                  <h4>Confirmation</h4>
                             </div>
-                          <div class="modal-body">
+                        <div class="modal-body">
+                          <form class="pure-form pure-form-stacked" method="post">
 
-                      <form class="pure-form pure-form-stacked" method="post">
+                          <div class="form-body">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="_method" value="put" class="method">
 
-                          {{ csrf_field() }}
-                          <input type="hidden" name="_method" value="put" class="method">
+                            <div class="form-group">
+                              <label class="control-label col-md-4" for="refprof">refprof</label>
+                              <div class="col-md-8 @if($errors->has('refprof')) has-error @endif">
+                                <input class="form-control" id="refprof" type="text" placeholder="id" name="refprof" required/>
+                                @if($errors->has('ref'))
+                                <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('refprof') }}</div>
+                                @endif
+                              </div>
+                            </div>
 
-                          <label for="refprof">refprof</label>
-                          <input id="refprof" type="text" placeholder="id" name="refprof" required/>
+                            <div class="form-group">
+                              <label class="control-label col-md-4" for="name">Nom</label>
+                              <div class="col-md-8 @if($errors->has('name')) has-error @endif">
+                                <input class="form-control" id="name" type="text" placeholder="nom" name="name" required/>
+                                @if($errors->has('name'))
+                                <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('name') }}</div>
+                                @endif
+                              </div>
+                            </div>
 
-                          <label for="name">Nom</label>
-                          <input id="name" type="text" placeholder="nom" name="name" required/>
+                            <div class="form-group">
+                              <label class="control-label col-md-4" for="prenom">Prenom</label>
+                              <div class="col-md-8 @if($errors->has('prenom')) has-error @endif">
+                                <input class="form-control" id="prenom" type="text" placeholder="prenom" name="prenom" required/>
+                                @if($errors->has('prenom'))
+                                <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('prenom') }}</div>
+                                @endif
+                              </div>
+                            </div>
 
-                          <label for="prenom">Prenom</label>
-                          <input id="prenom" type="text" placeholder="prenom" name="prenom" required/>
+                            <div class="form-group">
+                              <label class="control-label col-md-4" for="grade">Grade</label>
+                              <div class="col-md-8 @if($errors->has('grade')) has-error @endif">
+                                <input class="form-control" id="grade" type="text" placeholder="Grade" name="grade" required/>
+                                @if($errors->has('grade'))
+                                <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('grade') }}</div>
+                                @endif
+                              </div>
+                            </div>
 
-                          <label for="grade">Grade</label>
-                          <input id="grade" type="text" placeholder="Grade" name="grade" required/>
+                            <div class="form-group">
+                              <label class="control-label col-md-4" for="specialite">Specialite</label>
+                              <div class="col-md-8">
+                                <select class="form-control" id="specialite" name="specialite">
+                                  @foreach ($spes as $key=>$spe)
+                                    <option value="{{$spe}}">{{$spe}}</option>
+                                  @endforeach
+                                </select>
+                              </div>
+                            </div>
 
-                          <label for="specialite">Specialite</label>
-                          <select id="specialite" name="specialite">
-                            @foreach ($spes as $key=>$spe)
-                              <option value="{{$spe}}">{{$spe}}</option>
-                            @endforeach
-                          </select>
+                            <div class="form-group">
+                              <label class="control-label col-md-4" for="email">Email</label>
+                              <div class="col-md-8 @if($errors->has('email')) has-error @endif">
+                                <input class="form-control" id="email" type="email" placeholder="email" name="email" required/>
+                                @if($errors->has('email'))
+                                <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('email') }}</div>
+                                @endif
+                              </div>
+                            </div>
 
-                          <label for="email">Email</label>
-                          <input id="email" type="email" placeholder="email" name="email" required/>
+                            <div class="form-group">
+                              <label class="control-label col-md-4" for="adress">Adresse</label>
+                              <div class="col-md-8 @if($errors->has('adress')) has-error @endif">
+                                <input class="form-control" id="adress" type="text" placeholder="adresse" name="adress" required/>
+                                @if($errors->has('adress'))
+                                <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('adress') }}</div>
+                                @endif
+                              </div>
+                            </div>
 
-                          <label for="adress">Adresse</label>
-                          <input id="adress" type="text" placeholder="adresse" name="adress" required/>
+                            <div class="form-group">
+                              <label class="control-label col-md-4" for="ville">Ville</label>
+                              <div class="col-md-8 @if($errors->has('ville')) has-error @endif">
+                                <input class="form-control" id="ville" type="text" placeholder="ville" name="ville" required/>
+                                @if($errors->has('ville'))
+                                <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('ville') }}</div>
+                                @endif
+                              </div>
+                            </div>
 
-                          <label for="ville">Ville</label>
-                          <input id="ville" type="text" placeholder="ville" name="ville" required/>
+                            <div class="form-group">
+                              <label class="control-label col-md-4" for="num">Tel</label>
+                              <div class="col-md-8 @if($errors->has('num')) has-error @endif">
+                                <input class="form-control" id="num" type="number" placeholder="Tél" name="num" min="0" required/>
+                                @if($errors->has('num'))
+                                <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('num') }}</div>
+                                @endif
+                              </div>
+                            </div>
 
-                          <label for="num">Tel</label>
-                          <input id="num" type="number" placeholder="Tél" name="num" min="0" required/>
-
-                          <label for="departement_id">Département</label>
-                          <select id="departement_id" name="departement_id">
-                            @foreach ($depts as $dept)
-                              <option value="{{$dept->id}}">{{$dept->intitule}}</option>
-                            @endforeach
-                          </select>
+                            <div class="form-group">
+                              <label class="control-label col-md-4" for="departement_id">Département</label>
+                              <div class="col-md-8">
+                                <select class="form-control" id="departement_id" name="departement_id">
+                                  @foreach ($depts as $dept)
+                                    <option value="{{$dept->id}}">{{$dept->intitule}}</option>
+                                  @endforeach
+                                </select>
+                              </div>
+                            </div>
+                          </div>
 
                           <div class="inline">
-                            <button type="submit" class="confirm confirm2 pure-button pure-button-primary">Confirmer</button>
+                            <button type="submit" class="confirm confirm2 btn btn-primary">Confirmer</button>
 
-                            <button type="button" class="annuler annuler2 pure-button pure-button-primary">Annuler</button>
+                            <button type="button" class="annuler annuler2 btn btn-danger">Annuler</button>
 
                           </div>
 
                         </form>
-                          </div>
-                           </div>
-                     </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
 
          </div>
         <div id="import" class="modal">

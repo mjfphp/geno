@@ -1,18 +1,13 @@
 $(document).ready(function(){
-  $('.cont').width($(window).innerWidth());
-  $('.cont').height($(window).innerHeight()-50);
+  $('.cont').width($(document).width());
+  $('.cont').height($(document).height()-50);
   sizetables();
-  // close button of the modal
-  $('.annuler,#nav-icon1,span').click(function(){
-          $('#prof').css("display","none");
-          $('#prof input').val("");
-  });
   // on click events for our edit and delete buttons
   $('#addp').click(function() {
           $('#editS').css("display","block");
 
           var action = $(this).attr("data-info");
-          
+
           $(".method").remove();
           $('#editS form').attr('action',action);
   });
@@ -46,8 +41,8 @@ $(document).ready(function(){
 })
 
 function sizetables(){
-  $(window).resize(function(){
-    $('.cont').width($(window).innerWidth());
-    $('.cont').height($(window).innerHeight()-50);
+  $(window).on('resize',function(){
+    $('.cont').width($(document).width());
+    $('.cont').height($(document).height()-50);
   });
 }

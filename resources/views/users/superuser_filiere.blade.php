@@ -106,22 +106,28 @@
              </div>
            <div class="modal-body">
 
-              <form class="pure-form pure-form-stacked" method="post">
+              <form class="form-horizontal" method="post">
                 {{csrf_field()}}
                 <input type="hidden" name="_method" value="put" class="method1">
 
-                <label for="intitule">Intitule</label>
-                <input id="intitule" type="text" placeholder="intitule" name="intitule" value="{{ old('intitule') }}">
+                <div class="el">
+                  <label for="intitule">Intitule</label>
+                  <input id="intitule" type="text" placeholder="intitule" name="intitule" value="{{ old('intitule') }}">
+                </div>
 
-                <label for="abbreviation">Abréviation</label>
-                <input id="abbreviation" type="text" placeholder="Abréviation" name="abbreviation" value="{{ old('intitule') }}">
+                <div class="el">
+                  <label for="abbreviation">Abréviation</label>
+                  <input id="abbreviation" type="text" placeholder="Abréviation" name="abbreviation" value="{{ old('intitule') }}">
+                </div>
 
-                <label for="user_id">Responsable</label>
-                <select id="user_id" name="user_id" value="{{ old('user_id') }}">
-                   @foreach ($profs as $prof)
-                        <option value="{{$prof->id}}">{{$prof->name.' '.$prof->prenom}}</option>
-                   @endforeach
-                </select>
+                <div class="el">
+                  <label for="user_id">Responsable</label>
+                  <select id="user_id" name="user_id" value="{{ old('user_id') }}">
+                     @foreach ($profs as $prof)
+                          <option value="{{$prof->id}}">{{$prof->name.' '.$prof->prenom}}</option>
+                     @endforeach
+                  </select>
+                </div>
 
 
                 <div class="inline">
@@ -148,20 +154,24 @@
                    {{ csrf_field()}}
                    <input type="hidden" name="_method" value="put" class="method2">
 
-               <label for="intitule">Intitule</label>
-               <input id="intitule" type="text" placeholder="Intitule" name="intitule">
+               <div class="el">
+                 <label for="intitule">Intitule</label>
+                 <input id="intitule" type="text" placeholder="Intitule" name="intitule">
+               </div>
 
-               <label for="user_id">Responsable</label>
-               <select id="user_id" name="user_id">
-                  @foreach ($profs as $prof)
-                       <option value="{{$prof->id}}">{{$prof->name.' '.$prof->prenom}}</option>
-                 @endforeach
-               </select>
+               <div class="el">
+                 <label for="user_id">Responsable</label>
+                 <select id="user_id" name="user_id">
+                    @foreach ($profs as $prof)
+                         <option value="{{$prof->id}}">{{$prof->name.' '.$prof->prenom}}</option>
+                   @endforeach
+                 </select>
+               </div>
                <div class="inline">
                  <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
                  <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
                </div>
-             </form>
+                </form>
                  </div>
                  </div>
 

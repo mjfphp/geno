@@ -1,5 +1,8 @@
 $('.table').each(function(){
-  $(this).DataTable({info:false});
+  $(this).DataTable({
+    info:false,
+    pageLength:7,
+  });
 })
 // the leftside bar click to scroll code
 $(document).ready(function(){
@@ -10,4 +13,7 @@ $(document).ready(function(){
           $('#deleteS form').attr('action', action + id);
   });
 
+});
+$('#nav-icon1,#nav-icon1 span,.annuler').click(function(){
+        $('#editS').css("display","none");
 });

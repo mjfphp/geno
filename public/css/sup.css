@@ -8,14 +8,20 @@ body{
 
 .cont{
   position: relative;
+  width: 100%;
   top: 68px;
   overflow: scroll;
 }
+
 .tab{
   position: absolute;
   width: 100%;
   height: 100%;
   padding: 5px;
+}
+.container{
+  width: 100% !important;
+  margin-bottom: 50px !important;
 }
 
 /* ————————————————————–
@@ -26,16 +32,25 @@ body{
   z-index: -1;
   text-align: center;
 }
-
+.table td {
+  font-size: 13px !important;
+  padding: 7px !important;
+}
+.table tr {
+  font-size: 14px !important;
+  padding: 8px !important;
+}
 /* Button edit et delete du tableau */
 .edit-modal{
   background-color: #0088ae;
   color: white;
+  font-size: 13px !important;
 }
 
 .delete-modal{
   background-color: #ae173d;
   color: white;
+  font-size: 13px !important;
 }
 
 /* Add Animation */
