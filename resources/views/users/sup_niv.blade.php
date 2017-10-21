@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('style')
-  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
-  <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
   <link rel="stylesheet"  href="{{ asset('css/tabmodalbuttons.css') }}">
 @endsection
 
@@ -41,15 +38,6 @@
        <div class="t">
          <div class="buttons1">
             <button class="btnstyle" type="button" id="addniv" name="addniv" data-info="/niveaux/">Ajouter Un Niveau</button>
-            @if ($errors->any())
-                            <div class="alert alert-danger">
-                                <ul>
-                                    @foreach ($errors->all() as $error)
-                                        <li>{{ $error }}</li>
-                                    @endforeach
-                                </ul>
-                            </div>
-            @endif
                 </div>
 
                 <div class="fil_tab">
@@ -87,6 +75,7 @@
                             </tbody>
                          </table>
                   <div id="editS" class="modal">
+                    <div class="modal-dialog modal-lg">
                         <div class="modal-content">
                            <div class="modal-header">
                              <div id="nav-icon1" class="open">
@@ -96,33 +85,40 @@
                                 <h4>Confirmation</h4>
                            </div>
                          <div class="modal-body">
-                           <form class="pure-form pure-form-stacked" method="post">
-
-                             {{ csrf_field()}}
-                             <input type="hidden" name="_method" value="put" class="method">
-
-                               <div class="form-group">
-                             <label for="abbreviation">Abréviation</label>
-                                <div class="col-md-8 @if($errors->has('abbreviation')) has-error @endif">
-                                 <input id="abbreviation" type="text" name="abbreviation" placeholder="abbreviation">
-                                </div>
-                               </div>
+                           <form class="form-horizontal" method="post">
+                             <div class="form-body">
+                               {{ csrf_field()}}
+                               <input type="hidden" name="_method" value="put" class="method">
 
                                <div class="form-group">
-                             <label for="nbg">Nombre de Groupe</label>
-                                <div class="col-md-8 @if($errors->has('nbg')) has-error @endif">
-                                   <input id="nbg" type="number" name="nbg" placeholder="Nombre de Groupe" min="00">
-                                </div>
+                                 <label class="control-label col-md-5" for="abbreviation">Abréviation</label>
+                                 <div class="col-md-7 @if($errors->has('abbreviation')) has-error @endif">
+                                   <input class="form-control" id="abbreviation" type="text" name="abbreviation" placeholder="abbreviation">
+                                   @if($errors->has('abbreviation'))
+                                   <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('abbreviation') }}</div>
+                                   @endif
+                                 </div>
                                </div>
 
-                         <div class="inline">
-                           <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
-                           <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
-                         </div>
-                       </form>
-                           </div>
-                           </div>
+                                 <div class="form-group">
+                                   <label class="control-label col-md-5" for="nbg">Nombre de Groupe</label>
+                                   <div class="col-md-7 @if($errors->has('nbg')) has-error @endif">
+                                      <input class="form-control" id="nbg" type="number" name="nbg" placeholder="Nombre de Groupe" min="00">
+                                      @if($errors->has('nbg'))
+                                      <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('nbg') }}</div>
+                                      @endif
+                                    </div>
+                                 </div>
+                             </div>
+                             <div class="inline">
+                               <button type="submit" class="confirm confirm2 btn btn-primary">Confirmer</button>
 
+                               <button type="button" class="annuler annuler2 btn btn-danger">Annuler</button>
+                             </div>
+                             </form>
+                           </div>
+                           </div>
+                      </div>
                     </div>
                     @include('partial.deleteS')
                 </div>

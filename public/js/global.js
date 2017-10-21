@@ -14,6 +14,7 @@ $(document).ready(function(){
   });
 
 });
+
 $('#nav-icon1,#nav-icon1 span,.annuler').click(function(){
         $('#editS').css("display","none");
 });

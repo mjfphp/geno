@@ -139,7 +139,7 @@ a.tree_label:hover { color: #666; }
   left: 196px !important;
 }
 .table{
-  width:80% !important;
+  width: 80% !important;
   box-shadow: 0 0 5px 0 rgba(0, 0, 0, 0.2), 0 2px 2px 0 rgba(0, 0, 0, 0.24);
   z-index: -1;
 }
@@ -183,7 +183,7 @@ tr:hover,tr:nth-child(odd):hover,tr:focus,tr:visited{
 }
 /* Button edit et delete du tableau */
 .edit-modal{
-  background-color: #0088ae;
+  background-color: #0088ae;margin: 10px;
   color: white;
 }
 
@@ -226,7 +226,6 @@ tr:hover,tr:nth-child(odd):hover,tr:focus,tr:visited{
 .modal-content {
     background-color: #fefefe;
     margin: 100px auto; /* 15% from the top and centered */
-    width: 300px; /* Could be more or less, depending on screen size */
 }
 
 .modal-content form{
@@ -245,7 +244,13 @@ tr:hover,tr:nth-child(odd):hover,tr:focus,tr:visited{
   font-size: 26px;
 }
 /* Modal Body */
-
+.form-body{
+  display: grid;
+  grid-template-columns: auto auto;
+}
+th {
+  width: auto !important;
+}
 .modal-body form{
   text-align: center;
 }

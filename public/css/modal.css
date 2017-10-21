@@ -52,10 +52,9 @@
 .modal-body form button:nth-child(1){
   background-color: #0088ae;
 }
-.modal-body form input,.modal-body form select {
-   
+.control-label{
+  text-align: left !important;
 }
-
 /* Modal Content */
 .modal-content {
     position: relative;

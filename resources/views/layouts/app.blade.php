@@ -35,11 +35,7 @@
     <script src="{{ URL::asset('js/bootstrap.min.js') }}"></script>
     <script type="text/javascript" charset="utf8" src="//cdn.datatables.net/1.10.16/js/jquery.dataTables.js"></script>
     @yield('js')
-    <script type="text/javascript">
-    $(document).ready(function() {
-      $('.table').DataTable();
-    } );
-    </script>
     <script src="{{ URL::asset('js/global.js') }}"></script>
+    <script src="{{ URL::asset('js/trash.js') }}"></script>
   </body>
 </html>

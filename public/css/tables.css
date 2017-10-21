@@ -52,14 +52,20 @@ tbody tr:nth-child(odd){
   text-align: center;
 }
 
-.table tr td {
-  font-size: 12px!important;
-  padding: 3px!important;
+.table td {
+  font-size: 13px !important;
+  padding: 8px !important;
+}
+.table tr {
+  font-size: 14px !important;
+  padding: 8px !important;
 }
 .table tr:hover td{
   background-color: #c2c2c2 !important;
 }
-
+.table th {
+  width: auto !important;
+}
 tr:hover,tr:nth-child(odd):hover,tr:focus,tr:visited{
   background-color:#212121;
   color: white;

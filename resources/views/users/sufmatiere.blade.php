@@ -68,6 +68,7 @@
                     </tbody>
                  </table>
           <div id="editS" class="modal">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                    <div class="modal-header">
                      <div id="nav-icon1" class="open">
@@ -78,39 +79,69 @@
                    </div>
                  <div class="modal-body">
                   <form class="pure-form pure-form-stacked" method="post">
+                    <div class="form-body">
                    {{ csrf_field()}}
                    <input type="hidden" name="_method" value="put" class="method">
 
-                 <label for="intitule">Intitule</label>
-                 <input id="intitule" type="text" name="intitule" placeholder="Intitule">
+                   <div class="form-group">
+                     <label class="control-label col-md-5" for="intitule">Intitule</label>
+                     <div class="col-md-7 @if($errors->has('intitule')) has-error @endif">
+                       <input class="form-control" id="intitule" type="text" name="intitule" placeholder="Intitule">
+                       @if($errors->has('intitule'))
+                       <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('intitule') }}</div>
+                       @endif
+                     </div>
+                   </div>
+                   <div class="form-group">
+                     <label class="control-label col-md-5" for="grp">Groupe</label>
+                     <div class="col-md-7">
+                       <select class="form-control" id="grp" name="grp" value="{{ old('grp') }}" type="number">
+                          @for($i=1;$i<$module->niveau->nbg+1;$i++)
+                                   <option value="{{$i}}">{{$i}}</option>
+                          @endfor
+                      </select>
+                     </div>
+                   </div>
+                   <div class="form-group">
+                      <label class="control-label col-md-5" for="user_id">Prof</label>
+                      <div class="col-md-7">
+                        <select class="form-control" id="user_id" name="user_id">
+                          @foreach ($profs as $prof)
+                             <option value="{{$prof->id}}">{{$prof->name." ".$prof->prenom}}</option>
+                          @endforeach
+                        </select>
+                      </div>
+                   </div>
 
-                 <label for="grp">Groupe</label>
-                   <select id="grp" name="grp" value="{{ old('grp') }}" type="number">
-                      @for($i=1;$i<$module->niveau->nbg+1;$i++)
-                               <option value="{{$i}}">{{$i}}</option>
-                      @endfor
-                  </select>
-                 <label for="user_id">Prof</label>
-                 <select id="user_id" name="user_id">
-                   @foreach ($profs as $prof)
-                      <option value="{{$prof->id}}">{{$prof->name." ".$prof->prenom}}</option>
-                   @endforeach
-                 </select>
+                 <div class="form-group">
+                   <label class="control-label col-md-5" for="pourcentage">pourcentage</label>
+                   <div class="col-md-7 @if($errors->has('pourcentage')) has-error @endif">
+                     <input class="form-control" id="pourcentage" type="number" name="pourcentage" min="0" step="0.01" max="1">
+                     @if($errors->has('pourcentage'))
+                     <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('pourcentage') }}</div>
+                     @endif
+                   </div>
+                 </div>
 
-                 <label for="pourcentage">pourcentage</label>
-                 <input id="pourcentage" type="number" name="pourcentage" min="0" step="0.01" max="1">
+                 <div class="form-group">
+                   <label class="control-label col-md-5" for="vh">Vh</label>
+                   <div class="col-md-7 @if($errors->has('vh')) has-error @endif">
+                     <input class="form-control" id="vh" type="number" name="vh" placeholder="Vh" min="0" step="0.001">
+                     @if($errors->has('vh'))
+                     <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('vh') }}</div>
+                     @endif
+                   </div>
+                 </div>
 
-                 <label for="vh">Vh</label>
-                 <input id="vh" type="number" name="vh" placeholder="Vh" min="0" step="0.001">
-
+                    </div>
                  <div class="inline">
-                   <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
-                   <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
+                   <button type="submit" class="confirm btn btn-primary">Confirmer</button>
+                   <button type="button" class="annuler btn btn-danger">Annuler</button>
                  </div>
                </form>
                    </div>
                    </div>
-
+                </div>
             </div>
             @include('partial.deleteS')
         @endsection

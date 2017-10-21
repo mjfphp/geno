@@ -96,6 +96,7 @@
                      </tbody>
                   </table>
     <div id="editF" class="modal">
+      <div class="modal-dialog modal-lg">
           <div class="modal-content">
              <div class="modal-header">
                <div id="nav-icon1" class="open">
@@ -107,40 +108,54 @@
            <div class="modal-body">
 
               <form class="form-horizontal" method="post">
-                {{csrf_field()}}
-                <input type="hidden" name="_method" value="put" class="method1">
+                <div class="form-body">
+                  {{csrf_field()}}
+                  <input type="hidden" name="_method" value="put" class="method1">
 
-                <div class="el">
-                  <label for="intitule">Intitule</label>
-                  <input id="intitule" type="text" placeholder="intitule" name="intitule" value="{{ old('intitule') }}">
+                  <div class="form-group">
+                    <label class="control-label col-md-5" for="intitule">Intitule</label>
+                    <div class="col-md-7 @if($errors->has('intitule')) has-error @endif">
+                      <input class="form-control" id="intitule" type="text" placeholder="intitule" name="intitule" value="{{ old('intitule') }}">
+                      @if($errors->has('intitule'))
+                      <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('intitule') }}</div>
+                      @endif
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-5" for="abbreviation">Abréviation</label>
+                    <div class="col-md-7 @if($errors->has('abbreviation')) has-error @endif">
+                      <input class="form-control" id="abbreviation" type="text" placeholder="Abréviation" name="abbreviation" value="{{ old('bbreviation') }}">
+                      @if($errors->has('bbreviation'))
+                        <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('bbreviation') }}</div>
+                      @endif
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label class="control-label col-md-5" for="user_id">Responsable</label>
+                    <div class="col-md-7">
+                    <select class="form-control" id="user_id" name="user_id" value="{{ old('user_id') }}">
+                       @foreach ($profs as $prof)
+                            <option value="{{$prof->id}}">{{$prof->name.' '.$prof->prenom}}</option>
+                       @endforeach
+                    </select>
+                  </div>
+                  </div>
                 </div>
-
-                <div class="el">
-                  <label for="abbreviation">Abréviation</label>
-                  <input id="abbreviation" type="text" placeholder="Abréviation" name="abbreviation" value="{{ old('intitule') }}">
-                </div>
-
-                <div class="el">
-                  <label for="user_id">Responsable</label>
-                  <select id="user_id" name="user_id" value="{{ old('user_id') }}">
-                     @foreach ($profs as $prof)
-                          <option value="{{$prof->id}}">{{$prof->name.' '.$prof->prenom}}</option>
-                     @endforeach
-                  </select>
-                </div>
-
-
                 <div class="inline">
-                  <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
-                  <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
+                  <button type="submit" class="confirm confirm2 btn btn-primary">Confirmer</button>
+
+                  <button type="button" class="annuler annuler2 btn btn-danger">Annuler</button>
                 </div>
               </form>
              </div>
              </div>
-
+           </div>
       </div>
         @include('partial.deleteS')
         <div id="editD" class="modal">
+          <div class="modal-dialog modal-lg">
               <div class="modal-content">
                  <div class="modal-header">
                    <div id="nav-icon1" class="open">
@@ -150,30 +165,39 @@
                       <h4>Confirmation</h4>
                  </div>
                <div class="modal-body">
-                 <form class="pure-form pure-form-stacked" method="post">
-                   {{ csrf_field()}}
-                   <input type="hidden" name="_method" value="put" class="method2">
+                 <form class="form-horizontal" method="post">
+                   <div class="form-body">
+                     {{ csrf_field()}}
+                     <input type="hidden" name="_method" value="put" class="method2">
 
-               <div class="el">
-                 <label for="intitule">Intitule</label>
-                 <input id="intitule" type="text" placeholder="Intitule" name="intitule">
-               </div>
+                 <div class="form-group">
+                   <label class="control-label col-md-4" for="intitule">Intitule</label>
+                   <div class="col-md-8 @if($errors->has('intitule')) has-error @endif">
+                     <input class="form-control" id="intitule" type="text" placeholder="Intitule" name="intitule">
+                     @if($errors->has('intitule'))
+                     <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('intitule') }}</div>
+                     @endif
+                    </div>
+                 </div>
 
-               <div class="el">
-                 <label for="user_id">Responsable</label>
-                 <select id="user_id" name="user_id">
-                    @foreach ($profs as $prof)
-                         <option value="{{$prof->id}}">{{$prof->name.' '.$prof->prenom}}</option>
-                   @endforeach
-                 </select>
-               </div>
-               <div class="inline">
-                 <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
-                 <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
-               </div>
+                 <div class="form-group">
+                   <label class="control-label col-md-4" for="user_id">Responsable</label>
+                   <div class="col-md-8">
+                     <select class="form-control" id="user_id" name="user_id">
+                        @foreach ($profs as $prof)
+                             <option value="{{$prof->id}}">{{$prof->name.' '.$prof->prenom}}</option>
+                       @endforeach
+                     </select>
+                    </div>
+                 </div>
+                   </div>
+                   <div class="inline">
+                     <button type="submit" class="confirm btn btn-primary">Confirmer</button>
+                     <button type="button" class="annuler btn btn-danger">Annuler</button>
+                   </div>
                 </form>
                  </div>
                  </div>
-
+               </div>
           </div>
 @endsection

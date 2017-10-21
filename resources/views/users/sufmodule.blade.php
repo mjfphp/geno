@@ -75,62 +75,100 @@
                             </tbody>
                          </table>
                   <div id="editS" class="modal">
-                        <div class="modal-content">
-                           <div class="modal-header">
-                             <div id="nav-icon1" class="open">
-                             <span></span>
-                             <span></span>
+                        <div class="modal-dialog modal-lg">
+                          <div class="modal-content">
+                             <div class="modal-header">
+                               <div id="nav-icon1" class="open">
+                               <span></span>
+                               <span></span>
+                               </div>
+                                  <h4>Confirmation</h4>
                              </div>
-                                <h4>Confirmation</h4>
-                           </div>
-                         <div class="modal-body">
-                      <form class="pure-form pure-form-stacked" method="post">
-                             {{csrf_field()}}
+                           <div class="modal-body">
+                        <form class="form-horizontal" method="post">
+                               {{csrf_field()}}
+                               <input type="hidden" name="_method" value="put" class="method">
+                               <div class="form-body">
+                                 <div class="form-group">
+                                   <label class="control-label col-md-4" for="intitule">Intitule</label>
+                                   <div class="col-md-7 @if($errors->has('intitule')) has-error @endif">
+                                     <input class="form-control" id="intitule" type="text" name="intitule" placeholder="intitule">
+                                     @if($errors->has('intitule'))
+                                     <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('intitule') }}</div>
+                                     @endif
+                                   </div>
+                                 </div>
 
-                             <input type="hidden" name="_method" value="put" class="method">
+                                 <div class="form-group">
+                                   <label class="control-label col-md-4" for="abbreviation">Abréviation</label>
+                                   <div class="col-md-7 @if($errors->has('abbreviation')) has-error @endif">
+                                     <input class="form-control" id="abbreviation" name="abbreviation" type="text" placeholder="Abréviation">
+                                     @if($errors->has('abbreviation'))
+                                     <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('abbreviation') }}</div>
+                                     @endif
+                                   </div>
+                                 </div>
 
+                                 <div class="form-group">
+                                   <label class="control-label col-md-4" for="user_id">Responsable</label>
+                                   <div class="col-md-7">
+                                     <select class="form-control" id="user_id" name="user_id">
+                                        @foreach ($profs as $prof)
+                                            <option value="{{$prof->id}}">{{$prof->name.' '.$prof->prenom}}</option>
+                                        @endforeach
+                                     </select>
+                                   </div>
+                                 </div>
 
-                             <label for="intitule">Intitule</label>
-                             <input id="intitule" type="text" name="intitule" placeholder="intitule">
+                                 <div class="form-group">
+                                   <label class="control-label col-md-4" for="departement_id">Département</label>
+                                   <div class="col-md-7">
+                                     <select class="form-control" id="departement_id" name="departement_id">
+                                        @foreach ($depts as $dept)
+                                                    <option value="{{$dept->id}}">{{$dept->intitule}}</option>
+                                        @endforeach
+                                     </select>
+                                   </div>
+                                 </div>
 
-                             <label for="abbreviation">Abréviation</label>
-                             <input id="abbreviation" name="abbreviation" type="text" placeholder="Abréviation">
+                                 <div class="form-group">
+                                   <label class="control-label col-md-4" for="semestre">semestre</label>
+                                   <div class="col-md-7">
+                                     <select class="form-control" id="semestre" name="semestre">
+                                       <option value="S1">S1</option>
+                                       <option value="S2">S2</option>
+                                     </select>
+                                   </div>
+                                 </div>
 
-                             <label for="user_id">Responsable</label>
-                             <select id="user_id" name="user_id">
-                                @foreach ($profs as $prof)
-                                    <option value="{{$prof->id}}">{{$prof->name.' '.$prof->prenom}}</option>
-                                @endforeach
-                             </select>
+                                 <div class="form-group">
+                                   <label class="control-label col-md-4" for="nature">Nature</label>
+                                   <div class="col-md-7 @if($errors->has('nature')) has-error @endif">
+                                     <input class="form-control" id="nature" type="text" placeholder="Nature" name="nature">
+                                     @if($errors->has('nature'))
+                                     <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('nature') }}</div>
+                                     @endif
+                                   </div>
+                                 </div>
 
-                             <label for="departement_id">Département</label>
-                             <select id="departement_id" name="departement_id">
-                                @foreach ($depts as $dept)
-                                            <option value="{{$dept->id}}">{{$dept->intitule}}</option>
-                                @endforeach
-                             </select>
-
-                             <label for="semestre">semestre</label>
-                             <select id="semestre" name="semestre">
-                               <option value="S1">S1</option>
-                               <option value="S2">S2</option>
-
-                             </select>
-
-                             <label for="nature">Nature</label>
-                             <input id="nature" type="text" placeholder="Nature" name="nature">
-
-                             <label for="vh">Vh</label>
-                             <input id="vh" type="number" placeholder="Vh" min="0" step="0.0001" name="vh">
-
-                         <div class="inline">
-                           <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
-                           <button type="button" class="annuler pure-button pure-button-primary">Annuler</button>
-                         </div>
-                     </form>
-                           </div>
-                           </div>
-
-                    </div>
+                                 <div class="form-group">
+                                   <label class="control-label col-md-4" for="vh">Vh</label>
+                                   <div class="col-md-7 @if($errors->has('vh')) has-error @endif">
+                                     <input class="form-control" id="vh" type="number" placeholder="Vh" min="0" step="0.0001" name="vh">
+                                     @if($errors->has('vh'))
+                                     <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('vh') }}</div>
+                                     @endif
+                                   </div>
+                                 </div>
+                               </div>
+                               <div class="inline">
+                                 <button type="submit" class="confirm btn btn-primary">Confirmer</button>
+                                 <button type="button" class="annuler btn btn-danger">Annuler</button>
+                               </div>
+                       </form>
+                             </div>
+                             </div>
+                        </div>
+                  </div>
                     @include('partial.deleteS')
                 @endsection

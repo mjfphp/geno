@@ -22,6 +22,7 @@
 
 @section('content')
 <div id="parametrages" class="modal" style="display:@if ($errors->any()) block @endif">
+  <div class="modal-dialog">
     <div class="modal-content">
         <div class="modal-header">
          <div id="nav-icon1" class="open">
@@ -31,28 +32,32 @@
          <h4>Confirmation</h4>
         </div>
         <div class="modal-body">
-        <form class="pure-form pure-form-stacked" action="" method="POST">{!! csrf_field() !!}
-            
-            <div class="form-group">
-         <label for="intitule">Nom de matiere</label>
-                <div class="col-md-8 @if($errors->has('intitule')) has-error @endif">
-         <input id="intitule" name="intitule" type="text" placeholder="AP11" autocomplete="false">
-                </div>
-            </div>
+        <form class="form-horizontal" action="" method="POST">
 
-            <div class="form-group">
-         <label for="avantRatt">pourcentage avant ratt</label>
-                <div class="col-md-8 @if($errors->has('avantRatt')) has-error @endif">
-                <input id="avantRatt" type="number" min="0" max="100" name="avantRatt">
-                </div>
-            </div>
-            
-        <div class="form-group">
-        <label for="apresRatt">pourcentage après ratt</label>
-            <div class="col-md-8 @if($errors->has('apresRatt')) has-error @endif">
-            <input id="apresRatt" type="number" min="0" max="100" name="apresRatt">
-            </div>
-        </div>
+          <div class="form-body">
+            {!! csrf_field() !!}
+
+              <div class="form-group">
+           <label for="intitule">Nom de matiere</label>
+                  <div class="col-md-8 @if($errors->has('intitule')) has-error @endif">
+           <input id="intitule" name="intitule" type="text" placeholder="AP11" autocomplete="false">
+                  </div>
+              </div>
+
+              <div class="form-group">
+           <label for="avantRatt">pourcentage avant ratt</label>
+                  <div class="col-md-8 @if($errors->has('avantRatt')) has-error @endif">
+                  <input id="avantRatt" type="number" min="0" max="100" name="avantRatt">
+                  </div>
+              </div>
+
+          <div class="form-group">
+          <label for="apresRatt">pourcentage après ratt</label>
+              <div class="col-md-8 @if($errors->has('apresRatt')) has-error @endif">
+              <input id="apresRatt" type="number" min="0" max="100" name="apresRatt">
+              </div>
+          </div>
+          </div>
 
          <div class="inline">
           <button type="submit" class="confirm pure-button pure-button-primary">Confirmer</button>
@@ -61,10 +66,11 @@
         </form>
         </div>
     </div>
+  </div>
 </div>
 <div class="container">
     <div class="info-matiere">
-        <div class="row">   
+        <div class="row">
             <div class="col col-md-3 col-xs-6">
                 nombre de matière
             </div>
@@ -89,7 +95,7 @@
             <div class="col-xs-11 col-sm-5 col-md-5">Note éliminatoire</div>
         </div>
     </div>
-        
+
     <div class="table-matiere">
         {!! csrf_field() !!}
         <table class="table table-hover table-bordered">
@@ -157,5 +163,5 @@
 </div>
 <diV id='log'>
 </diV>
-     
+
 @stop
