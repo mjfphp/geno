@@ -1,35 +1,43 @@
-$(document).ready(function() {
 
-  var active1 = false;
-  var active2 = false;
-  var active3 = false;
-  var active4 = false;
+// the leftside bar click to scroll code
+$(document).ready(function(){
+  $('.cont').width($(document).width());
+  $('.cont').height($(document).height()-50);
+  sizetables();
+  $('.table').dataTable( {
+    "searching": false,
+    "info" : false,
+     "pageLength" :7,
+    "bLengthChange": false
+  } );
 
-    $('.parent2').on('mousedown touchstart', function() {
+  $(".delete").on('click',function() {
+          $('#deleteS').css("display","block");
+          $('#deleteS form h4').text("Vous voulez vraiment supprimer cet element?");
+          $('#deleteS form input').attr("value","delete");
+          var id = $(this).attr("data-id");
+          var action = $(this).attr("data-info");
+          $('#deleteS form').attr('action', action + id);
+  });
 
-    if (!active1) $(this).find('.test1').css({'background-color': 'gray', 'transform': 'translate(0px,70px)'});
-    else $(this).find('.test1').css({'background-color': 'dimGray', 'transform': 'none'});
-     if (!active2) $(this).find('.test2').css({'background-color': 'gray', 'transform': 'translate(-60px,40px)'});
-    else $(this).find('.test2').css({'background-color': 'darkGray', 'transform': 'none'});
-    active1 = !active1;
-    active2 = !active2;
-    });
+  $(".restaurer").on('click',function() {
+          $('#deleteS').css("display","block");
+          $('#deleteS form h4').text("Vous voulez vraiment restaurer cet element?");
+          $('#deleteS form input').attr("value","put");
+          var id = $(this).attr("data-id");
+          var action = $(this).attr("data-info");
+          $('#deleteS form').attr('action', action + id);
+  });
+
+  $('#nav-icon1,#nav-icon1 span,.annuler').click(function(){
+          $('#deleteS').css("display","none");
+  });
+
 });
 
-$('.test1,.test2').click(function(){
-  $('#editT').css("display","block");
-  if( $(this)[0] === $(".test1")[0]){
-    $(".modal-header h4").text("Professeurs");
-    $('.stud').css('display','none');
-    $('.prof').css('display','block');
-  }else {
-    $(".modal-header h4").text("Etudiants");
-    $('.stud').css('display','block');
-    $('.prof').css('display','none');
-  }
-})
-
-$('#nav-icon1,#nav-icon1 span,.annuler').click(function(){
-        $('#editT').css("display","none");
-        $(".modal-header h4").text("");
-});
+function sizetables(){
+  $(window).on('resize',function(){
+    $('.cont').width($(document).width());
+    $('.cont').height($(document).height()-50);
+  });
+}

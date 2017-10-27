@@ -1,7 +1,8 @@
 $('.table').each(function(){
   $(this).DataTable({
     info:false,
-    pageLength:7,
+    pageLength:10,
+    "bLengthChange": false
   });
 })
 // the leftside bar click to scroll code

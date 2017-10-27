@@ -53,7 +53,14 @@ Route::get('/sufel',function(){
   $eleve = App\Eleve::all();
   return view("users.sufel",compact("eleve"));
 });
-
+Route::get('/trash',function(){
+  $stud = App\Eleve::all();
+  return view("partial.Strash",compact("stud"));
+});
+Route::get('/trashp',function(){
+  $profs = App\User::all();
+  return view("partial.Ptrash",compact("profs"));
+});
 Route::get('/prof',function(){
   return view("users.prof");
 });

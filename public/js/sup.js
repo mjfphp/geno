@@ -39,10 +39,3 @@ $(document).ready(function(){
           });
   });
 })
-
-function sizetables(){
-  $(window).on('resize',function(){
-    $('.cont').width($(document).width());
-    $('.cont').height($(document).height()-50);
-  });
-}
