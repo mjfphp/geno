@@ -5,7 +5,6 @@ $(document).ready(function(){
   // on click events for our edit and delete buttons
   $('#addp').click(function() {
           $('#editS').css("display","block");
-
           var action = $(this).attr("data-info");
 
           $(".method").remove();
@@ -39,3 +38,10 @@ $(document).ready(function(){
           });
   });
 })
+
+function sizetables(){
+  $(window).resize(function(){
+    $('.cont').width($(document).width());
+    $('.cont').height($(document).height()-50);
+  });
+}

@@ -17,5 +17,11 @@ $(document).ready(function(){
 });
 
 $('#nav-icon1,#nav-icon1 span,.annuler').click(function(){
-        $('#editS').css("display","none");
+        $(this).parents().each(function(){
+          if( $(this)[0] == $("div#editS.modal")[0] ){
+            $('#editS').css("display","none");
+          }else{
+            $('#deleteS').css("display","none");
+          }
+        })
 });

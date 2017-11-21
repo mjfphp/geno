@@ -1,4 +1,4 @@
-  @extends('layouts.app')
+@extends('layouts.app')
 
 @section('style')
   <link href="css/sup.css" rel="stylesheet" type="text/css">
@@ -20,9 +20,9 @@
     <div class="cont">
         <div class="buttons1">
           <button type="button" id="addp" name="addp" class="btnstyle" data-info="/profs/">Ajouter Un Prof</button>
-          <button type="button" id ="import_btn" class="btnstyle"> Importer</button>
-          <button type="submit" id ="exprtE" name="exprtE" class="btnstyle">Exporter Excel</button>
-          <button type="button" id ="exprtP" name="exprtP" form="doPdf" class="btnstyle">Exporter Pdf</button>
+          <button type="button" id="import_btn" class="btnstyle"> Importer</button>
+          <button type="submit" id="exprtE" name="exprtE" class="btnstyle">Exporter Excel</button>
+          <button type="button" id="exprtP" name="exprtP" form="doPdf" class="btnstyle">Exporter Pdf</button>
 
         </div>
         <div class="tab">
@@ -97,8 +97,8 @@
                             <input type="hidden" name="_method" value="put" class="method">
 
                             <div class="form-group">
-                              <label class="control-label col-md-5" for="refprof">refprof</label>
-                              <div class="col-md-7 @if($errors->has('refprof')) has-error @endif">
+                              <label class="control-label col-md-4" for="refprof">refprof</label>
+                              <div class="col-md-5 @if($errors->has('refprof')) has-error @endif">
                                 <input class="form-control" id="refprof" type="text" placeholder="id" name="refprof" required/>
                                 @if($errors->has('ref'))
                                 <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('refprof') }}</div>
@@ -107,7 +107,7 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-5" for="name">Nom</label>
+                              <label class="control-label col-md-4" for="name">Nom</label>
                               <div class="col-md-7 @if($errors->has('name')) has-error @endif">
                                 <input class="form-control" id="name" type="text" placeholder="nom" name="name" required/>
                                 @if($errors->has('name'))
@@ -117,8 +117,8 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-5" for="prenom">Prenom</label>
-                              <div class="col-md-7 @if($errors->has('prenom')) has-error @endif">
+                              <label class="control-label col-md-4" for="prenom">Prenom</label>
+                              <div class="col-md-5 @if($errors->has('prenom')) has-error @endif">
                                 <input class="form-control" id="prenom" type="text" placeholder="prenom" name="prenom" required/>
                                 @if($errors->has('prenom'))
                                 <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('prenom') }}</div>
@@ -127,7 +127,7 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-5" for="grade">Grade</label>
+                              <label class="control-label col-md-4" for="grade">Grade</label>
                               <div class="col-md-7 @if($errors->has('grade')) has-error @endif">
                                 <input class="form-control" id="grade" type="text" placeholder="Grade" name="grade" required/>
                                 @if($errors->has('grade'))
@@ -137,8 +137,8 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-5" for="specialite">Specialite</label>
-                              <div class="col-md-7">
+                              <label class="control-label col-md-4" for="specialite">Specialite</label>
+                              <div class="col-md-5">
                                 <select class="form-control" id="specialite" name="specialite">
                                   @foreach ($spes as $key=>$spe)
                                     <option value="{{$spe}}">{{$spe}}</option>
@@ -148,7 +148,7 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-5" for="email">Email</label>
+                              <label class="control-label col-md-4" for="email">Email</label>
                               <div class="col-md-7 @if($errors->has('email')) has-error @endif">
                                 <input class="form-control" id="email" type="email" placeholder="email" name="email" required/>
                                 @if($errors->has('email'))
@@ -158,8 +158,8 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-5" for="adress">Adresse</label>
-                              <div class="col-md-7 @if($errors->has('adress')) has-error @endif">
+                              <label class="control-label col-md-4" for="adress">Adresse</label>
+                              <div class="col-md-5 @if($errors->has('adress')) has-error @endif">
                                 <input class="form-control" id="adress" type="text" placeholder="adresse" name="adress" required/>
                                 @if($errors->has('adress'))
                                 <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('adress') }}</div>
@@ -168,7 +168,7 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-5" for="ville">Ville</label>
+                              <label class="control-label col-md-4" for="ville">Ville</label>
                               <div class="col-md-7 @if($errors->has('ville')) has-error @endif">
                                 <input class="form-control" id="ville" type="text" placeholder="ville" name="ville" required/>
                                 @if($errors->has('ville'))
@@ -178,8 +178,8 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-5" for="num">Tel</label>
-                              <div class="col-md-7 @if($errors->has('num')) has-error @endif">
+                              <label class="control-label col-md-4" for="num">Tel</label>
+                              <div class="col-md-5 @if($errors->has('num')) has-error @endif">
                                 <input class="form-control" id="num" type="number" placeholder="Tél" name="num" min="0" required/>
                                 @if($errors->has('num'))
                                 <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('num') }}</div>
@@ -188,7 +188,7 @@
                             </div>
 
                             <div class="form-group">
-                              <label class="control-label col-md-5" for="departement_id">Département</label>
+                              <label class="control-label col-md-4" for="departement_id">Département</label>
                               <div class="col-md-7">
                                 <select class="form-control" id="departement_id" name="departement_id">
                                   @foreach ($depts as $dept)

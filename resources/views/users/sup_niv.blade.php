@@ -91,7 +91,7 @@
                                <input type="hidden" name="_method" value="put" class="method">
 
                                <div class="form-group">
-                                 <label class="control-label col-md-5" for="abbreviation">Abréviation</label>
+                                 <label class="control-label col-md-4" for="abbreviation">Abréviation</label>
                                  <div class="col-md-7 @if($errors->has('abbreviation')) has-error @endif">
                                    <input class="form-control" id="abbreviation" type="text" name="abbreviation" placeholder="abbreviation">
                                    @if($errors->has('abbreviation'))

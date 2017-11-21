@@ -10,17 +10,8 @@
 
 @section('buttons1')
     <button class="btnstyle" type="button" id="addf" name="addf" data-info="/filieres/">Ajouter Une filière</button>
-    <button class="btnstyle" type="button" id ="addd" name="addd" data-info="/dept/">Ajouter Un département</button>
-    <button class="btnstyle" type="button" class="hidden" id ="imprt" name="imprt">Importer</button>
-    @if ($errors->any())
-                    <div class="alert alert-danger">
-                        <ul>
-                            @foreach ($errors->all() as $error)
-                                <li>{{ $error }}</li>
-                            @endforeach
-                        </ul>
-                    </div>
-    @endif
+    <button class="btnstyle" type="button" id="addd" name="addd" data-info="/dept/">Ajouter Un département</button>
+    <button class="btnstyle" type="button" class="hidden" id="imprt" name="imprt">Importer</button>
 @endsection
 
 @section('fil_tab')
@@ -95,7 +86,7 @@
                      @endforeach
                      </tbody>
                   </table>
-    <div id="editF" class="modal">
+    <div id="editF" class="modal" style="display:@if ($errors->any()) block @endif">
       <div class="modal-dialog modal-lg">
           <div class="modal-content">
              <div class="modal-header">
@@ -113,7 +104,7 @@
                   <input type="hidden" name="_method" value="put" class="method1">
 
                   <div class="form-group">
-                    <label class="control-label col-md-5" for="intitule">Intitule</label>
+                    <label class="control-label col-md-4" for="intitule">Intitule</label>
                     <div class="col-md-7 @if($errors->has('intitule')) has-error @endif">
                       <input class="form-control" id="intitule" type="text" placeholder="intitule" name="intitule" value="{{ old('intitule') }}">
                       @if($errors->has('intitule'))
@@ -123,7 +114,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-5" for="abbreviation">Abréviation</label>
+                    <label class="control-label col-md-4" for="abbreviation">Abréviation</label>
                     <div class="col-md-7 @if($errors->has('abbreviation')) has-error @endif">
                       <input class="form-control" id="abbreviation" type="text" placeholder="Abréviation" name="abbreviation" value="{{ old('bbreviation') }}">
                       @if($errors->has('bbreviation'))
@@ -133,7 +124,7 @@
                   </div>
 
                   <div class="form-group">
-                    <label class="control-label col-md-5" for="user_id">Responsable</label>
+                    <label class="control-label col-md-4" for="user_id">Responsable</label>
                     <div class="col-md-7">
                     <select class="form-control" id="user_id" name="user_id" value="{{ old('user_id') }}">
                        @foreach ($profs as $prof)
@@ -172,7 +163,7 @@
 
                  <div class="form-group">
                    <label class="control-label col-md-4" for="intitule">Intitule</label>
-                   <div class="col-md-8 @if($errors->has('intitule')) has-error @endif">
+                   <div class="col-md-7 @if($errors->has('intitule')) has-error @endif">
                      <input class="form-control" id="intitule" type="text" placeholder="Intitule" name="intitule">
                      @if($errors->has('intitule'))
                      <div class="error" style="color:red"><span class="glyphicon glyphicon-remove"></span> {{ $errors->first('intitule') }}</div>
@@ -182,7 +173,7 @@
 
                  <div class="form-group">
                    <label class="control-label col-md-4" for="user_id">Responsable</label>
-                   <div class="col-md-8">
+                   <div class="col-md-7">
                      <select class="form-control" id="user_id" name="user_id">
                         @foreach ($profs as $prof)
                              <option value="{{$prof->id}}">{{$prof->name.' '.$prof->prenom}}</option>

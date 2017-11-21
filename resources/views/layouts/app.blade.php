@@ -27,7 +27,7 @@
         </div>
     </div>
 
-      @yield('content')
+    @yield('content')
 
        <!-- Parent -->
     <script src="{{ URL::asset('js/jquery-3.1.1.min.js') }}" ></script>
